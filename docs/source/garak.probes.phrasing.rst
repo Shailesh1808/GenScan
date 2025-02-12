@@ -1,7 +1,7 @@
-garak.probes.phrasing
+genscan.probes.phrasing
 =====================
 
-.. automodule:: garak.probes.phrasing
+.. automodule:: genscan.probes.phrasing
    :members:
    :undoc-members:
    :show-inheritance:   

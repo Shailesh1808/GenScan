@@ -2,7 +2,7 @@ import os
 import pytest
 import httpx
 
-from garak.generators.azure import AzureOpenAIGenerator
+from genscan.generators.azure import AzureOpenAIGenerator
 
 DEFAULT_DEPLOYMENT_NAME = "gpt-4o-deployment-test"
 
@@ -25,7 +25,7 @@ def set_fake_env(request) -> None:
                 del os.environ[k]
     os.environ[AzureOpenAIGenerator.ENV_VAR] = "test_value"
     os.environ[AzureOpenAIGenerator.MODEL_NAME_ENV_VAR] = "gpt-4o"
-    os.environ[AzureOpenAIGenerator.ENDPOINT_ENV_VAR] = "https://garak.example.com/"
+    os.environ[AzureOpenAIGenerator.ENDPOINT_ENV_VAR] = "https://genscan.example.com/"
     request.addfinalizer(restore_env)
 
 
@@ -46,7 +46,7 @@ def test_azureopenai_invalid_model_names():
 
 
 @pytest.mark.usefixtures("set_fake_env")
-@pytest.mark.respx(base_url="https://garak.example.com/")
+@pytest.mark.respx(base_url="https://genscan.example.com/")
 def test_azureopenai_chat(respx_mock, openai_compat_mocks):
     mock_response = openai_compat_mocks["azure_chat_default_generations"]
     extended_request = "openai/deployments/"

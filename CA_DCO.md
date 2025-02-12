@@ -1,6 +1,6 @@
 # Contributor Agreement 
 
-`garak` -- 11 October 2023
+`genscan` -- 11 October 2023
 
 This agreement consists of two parts - a code of conduct and a developer's certificate of origin. Agreeing to the contributor agreement requires agreeing to both these parts, which constitute the entire contributor agreement.
 

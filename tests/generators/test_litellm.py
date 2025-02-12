@@ -2,8 +2,8 @@ import pytest
 
 from os import getenv
 
-from garak.exception import BadGeneratorException
-from garak.generators.litellm import LiteLLMGenerator
+from genscan.exception import BadGeneratorException
+from genscan.generators.litellm import LiteLLMGenerator
 
 
 @pytest.mark.skipif(
@@ -46,7 +46,7 @@ def test_litellm_model_detection():
     custom_config = {
         "generators": {
             "litellm": {
-                "api_base": "https://garak.example.com/v1",
+                "api_base": "https://genscan.example.com/v1",
             }
         }
     }

@@ -1,7 +1,7 @@
-garak.detectors.lmrc
+genscan.detectors.lmrc
 ====================
 
-.. automodule:: garak.detectors.lmrc
+.. automodule:: genscan.detectors.lmrc
    :members:
    :undoc-members:
    :show-inheritance:   

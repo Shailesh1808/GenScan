@@ -1,4 +1,4 @@
-garak.probes.latentinjection
+genscan.probes.latentinjection
 ============================
 
 
@@ -28,9 +28,9 @@ The module uses a templating system to construct prompts.
 
 Markers:
 
-* The injection's placement within the text is denoted with ``<|garak_injection|>``, defined in ``latentinjection.INJECTION_MARKER``.
-* The placement of the payload within the injection is shown with ``<|garak_payload|>``, defined in ``latentinjection.PAYLOAD_MARKER``.
-* We can refer to the ``payload_trigger`` with ``<|garak_trigger|>``, defined in ``latentinjection.TRIGGER_MARKER``.
+* The injection's placement within the text is denoted with ``<|genscan_injection|>``, defined in ``latentinjection.INJECTION_MARKER``.
+* The placement of the payload within the injection is shown with ``<|genscan_payload|>``, defined in ``latentinjection.PAYLOAD_MARKER``.
+* We can refer to the ``payload_trigger`` with ``<|genscan_trigger|>``, defined in ``latentinjection.TRIGGER_MARKER``.
 
 So, for example, in the setup:
  
@@ -58,7 +58,7 @@ Each probe using ``LatentInjectionMixin`` may define:
 
 * ``injection_sep_pairs``, a list of tuples of ``injection_sep_start`` / ``injection_sep_end``, used to wrap the injection. Default ``[("", "")]``
 
-.. automodule:: garak.probes.latentinjection
+.. automodule:: genscan.probes.latentinjection
    :members:
    :undoc-members:
    :show-inheritance:   

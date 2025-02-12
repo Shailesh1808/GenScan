@@ -1,18 +1,18 @@
-garak.generators.nvcf
+genscan.generators.nvcf
 =====================
 
-This garak generator is a connector to NVIDIA Cloud Functions. It permits fast
+This genscan generator is a connector to NVIDIA Cloud Functions. It permits fast
 and flexible generation.
 
 NVCF functions work by sending a request to an invocation endpoint, and then polling
 a status endpoint until the response is received. The cloud function is described
-using a UUID, which is passed to garak as the ``model_name``. API key should be placed in
-environment variable ``NVCF_API_KEY`` or set in a garak config. For example:
+using a UUID, which is passed to genscan as the ``model_name``. API key should be placed in
+environment variable ``NVCF_API_KEY`` or set in a genscan config. For example:
 
 .. code-block::
 
    export NVCF_API_KEY="example-api-key-xyz"
-   garak -m nvcf -n 341da0d0-aa68-4c4f-89b5-fc39286de6a1
+   genscan -m nvcf -n 341da0d0-aa68-4c4f-89b5-fc39286de6a1
 
 
 Configuration
@@ -31,7 +31,7 @@ Configurable values:
 
 Some NVCF instances require custom parameters, for example a "model" header. These
 can be asserted in the NVCF config. For example, this cURL maps to the following
-garak YAML:
+genscan YAML:
 
 
 .. code-block::
@@ -61,7 +61,7 @@ garak YAML:
       model_type: nvcf.NvcfChat
       model_name: 341da0d0-aa68-4c4f-89b5-fc39286de6a1
 
-The ``nvcf`` generator uses the standard garak generator mechanism for 
+The ``nvcf`` generator uses the standard genscan generator mechanism for 
 ``max_tokens``, which is why this value is set at generator-level rather than 
 as a key-value pair in ``extra_params``.
 
@@ -70,13 +70,13 @@ Scaling
 -------
 
 The NVCF generator supports parallelisation and it's recommended to use this,
-invoking garak with ``--parallel_attempts`` set to a value higher than one.
-IF the NVCF times out due to insufficient capacity, garak will note this, 
+invoking genscan with ``--parallel_attempts`` set to a value higher than one.
+IF the NVCF times out due to insufficient capacity, genscan will note this, 
 backoff, and retry the request later.
 
 .. code-block::
 
-   garak -m nvcf -n 341da0d0-aa68-4c4f-89b5-fc39286de6a1 --parallel_attempts 32
+   genscan -m nvcf -n 341da0d0-aa68-4c4f-89b5-fc39286de6a1 --parallel_attempts 32
 
 
 Or, as yaml config:
@@ -93,7 +93,7 @@ Or, as yaml config:
 
 
 
-.. automodule:: garak.generators.nvcf
+.. automodule:: genscan.generators.nvcf
    :members:
    :undoc-members:
    :show-inheritance:   

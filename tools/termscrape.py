@@ -2,7 +2,7 @@ import requests
 import re
 import json
 
-from garak.data import path as data_path
+from genscan.data import path as data_path
 
 endpoint = "https://api.urbandictionary.com/v0/define"
 

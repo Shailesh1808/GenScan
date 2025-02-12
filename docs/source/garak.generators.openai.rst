@@ -1,7 +1,7 @@
-garak.generators.openai
+genscan.generators.openai
 =======================
 
-.. automodule:: garak.generators.openai
+.. automodule:: genscan.generators.openai
    :members:
    :undoc-members:
    :show-inheritance:   

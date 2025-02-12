@@ -1,8 +1,8 @@
 import pytest
 import requests
 import transformers
-import garak.generators.huggingface
-from garak._config import GarakSubConfig
+import genscan.generators.huggingface
+from genscan._config import genscanSubConfig
 
 
 @pytest.fixture
@@ -16,7 +16,7 @@ def hf_generator_config():
             },
         }
     }
-    config_root = GarakSubConfig()
+    config_root = genscanSubConfig()
     setattr(config_root, "generators", gen_config)
     return config_root
 
@@ -34,7 +34,7 @@ def hf_mock_response(hf_endpoint_mocks):
 
 def test_pipeline(hf_generator_config):
     generations = 10
-    g = garak.generators.huggingface.Pipeline("gpt2", config_root=hf_generator_config)
+    g = genscan.generators.huggingface.Pipeline("gpt2", config_root=hf_generator_config)
     assert g.name == "gpt2"
     assert isinstance(g.generator, transformers.pipelines.text_generation.Pipeline)
     assert isinstance(g.generator.model, transformers.PreTrainedModel)
@@ -52,7 +52,7 @@ def test_pipeline(hf_generator_config):
 
 def test_pipeline_chat(mocker, hf_generator_config):
     # uses a ~350M model with chat support
-    g = garak.generators.huggingface.Pipeline(
+    g = genscan.generators.huggingface.Pipeline(
         "microsoft/DialoGPT-small", config_root=hf_generator_config
     )
     mock_format = mocker.patch.object(
@@ -71,14 +71,14 @@ def test_inference(mocker, hf_mock_response, hf_generator_config):
         requests, "request", return_value=hf_mock_response
     )
 
-    g = garak.generators.huggingface.InferenceAPI(
+    g = genscan.generators.huggingface.InferenceAPI(
         model_name, config_root=hf_generator_config
     )
     assert g.name == model_name
     assert model_name in g.uri
 
     hf_generator_config.generators["huggingface"]["name"] = model_name
-    g = garak.generators.huggingface.InferenceAPI(config_root=hf_generator_config)
+    g = genscan.generators.huggingface.InferenceAPI(config_root=hf_generator_config)
     assert g.name == model_name
     assert model_name in g.uri
     assert isinstance(g.max_tokens, int)
@@ -97,14 +97,14 @@ def test_endpoint(mocker, hf_mock_response, hf_generator_config):
     model_name = "https://localhost:8000/gpt2"
     mock_request = mocker.patch.object(requests, "post", return_value=hf_mock_response)
 
-    g = garak.generators.huggingface.InferenceEndpoint(
+    g = genscan.generators.huggingface.InferenceEndpoint(
         model_name, config_root=hf_generator_config
     )
     assert g.name == model_name
     assert g.uri == model_name
 
     hf_generator_config.generators["huggingface"]["name"] = model_name
-    g = garak.generators.huggingface.InferenceEndpoint(config_root=hf_generator_config)
+    g = genscan.generators.huggingface.InferenceEndpoint(config_root=hf_generator_config)
     assert g.name == model_name
     assert g.uri == model_name
     assert isinstance(g.max_tokens, int)
@@ -120,9 +120,9 @@ def test_endpoint(mocker, hf_mock_response, hf_generator_config):
 
 
 def test_model(hf_generator_config):
-    g = garak.generators.huggingface.Model("gpt2", config_root=hf_generator_config)
+    g = genscan.generators.huggingface.Model("gpt2", config_root=hf_generator_config)
     assert g.name == "gpt2"
-    assert isinstance(g, garak.generators.huggingface.Model)
+    assert isinstance(g, genscan.generators.huggingface.Model)
     assert isinstance(g.model, transformers.PreTrainedModel)
     assert isinstance(g.tokenizer, transformers.PreTrainedTokenizerBase)
     assert isinstance(g.max_tokens, int)
@@ -138,7 +138,7 @@ def test_model(hf_generator_config):
 
 def test_model_chat(mocker, hf_generator_config):
     # uses a ~350M model with chat support
-    g = garak.generators.huggingface.Model(
+    g = genscan.generators.huggingface.Model(
         "microsoft/DialoGPT-small", config_root=hf_generator_config
     )
     mock_format = mocker.patch.object(
@@ -152,7 +152,7 @@ def test_model_chat(mocker, hf_generator_config):
 
 
 def test_select_hf_device():
-    from garak.generators.huggingface import HFCompatible
+    from genscan.generators.huggingface import HFCompatible
     import torch
 
     class mockHF(HFCompatible):

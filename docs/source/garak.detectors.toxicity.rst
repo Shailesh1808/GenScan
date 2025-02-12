@@ -1,7 +1,7 @@
-garak.detectors.toxicity
+genscan.detectors.toxicity
 ========================
 
-.. automodule:: garak.detectors.toxicity
+.. automodule:: genscan.detectors.toxicity
    :members:
    :undoc-members:
    :show-inheritance:   

@@ -1,7 +1,7 @@
-garak.generators.test
+genscan.generators.test
 =====================
 
-.. automodule:: garak.generators.test
+.. automodule:: genscan.generators.test
    :members:
    :undoc-members:
    :show-inheritance:   

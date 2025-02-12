@@ -1,7 +1,7 @@
-garak.detectors.goodside
+genscan.detectors.goodside
 ========================
 
-.. automodule:: garak.detectors.goodside
+.. automodule:: genscan.detectors.goodside
    :members:
    :undoc-members:
    :show-inheritance:   

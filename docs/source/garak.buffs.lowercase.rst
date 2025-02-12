@@ -1,7 +1,7 @@
-garak.buffs.lowercase
+genscan.buffs.lowercase
 =====================
 
-.. automodule:: garak.buffs.lowercase
+.. automodule:: genscan.buffs.lowercase
    :members:
    :undoc-members:
    :show-inheritance:   

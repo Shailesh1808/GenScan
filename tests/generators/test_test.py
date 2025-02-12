@@ -3,26 +3,26 @@
 
 import pytest
 
-import garak._plugins
-import garak.generators.base
-import garak.generators.test
+import genscan._plugins
+import genscan.generators.base
+import genscan.generators.test
 
 TEST_GENERATORS = [
     a
-    for a, b in garak._plugins.enumerate_plugins("generators")
+    for a, b in genscan._plugins.enumerate_plugins("generators")
     if b is True and a.startswith("generators.test")
 ]
 
 
 @pytest.mark.parametrize("klassname", TEST_GENERATORS)
 def test_test_instantiate(klassname):
-    g = garak._plugins.load_plugin(klassname)
-    assert isinstance(g, garak.generators.base.Generator)
+    g = genscan._plugins.load_plugin(klassname)
+    assert isinstance(g, genscan.generators.base.Generator)
 
 
 @pytest.mark.parametrize("klassname", TEST_GENERATORS)
 def test_test_gen(klassname):
-    g = garak._plugins.load_plugin(klassname)
+    g = genscan._plugins.load_plugin(klassname)
     for generations in (1, 50):
         out = g.generate("", generations_this_call=generations)
         assert isinstance(out, list), ".generate() must return a list"

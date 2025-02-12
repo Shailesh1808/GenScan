@@ -4,10 +4,10 @@
 import os
 from pathlib import Path
 
-from garak import cli, _config
+from genscan import cli, _config
 
 
-CODEPATH_PREFIX = "_garak_test_hitlog_codepath"
+CODEPATH_PREFIX = "_genscan_test_hitlog_codepath"
 
 
 def test_hitlog_codepath():

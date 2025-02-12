@@ -7,11 +7,11 @@ clean:
 	rm -rf $(outdir) generated _build
 
 cliref:
-	echo "CLI reference for garak" > cliref.rst
+	echo "CLI reference for genscan" > cliref.rst
 	echo "=======================" >> cliref.rst
 	echo >> cliref.rst
 	echo "::" >> cliref.rst
 	echo >> cliref.rst
-	cd ../.. ; python3 -m garak --help | sed 's/^/  /' >> docs/source/cliref.rst
+	cd ../.. ; python3 -m genscan --help | sed 's/^/  /' >> docs/source/cliref.rst
 
 all: clean cliref doc

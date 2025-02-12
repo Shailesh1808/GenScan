@@ -1,7 +1,7 @@
-garak.detectors.fileformats
+genscan.detectors.fileformats
 ===========================
 
-.. automodule:: garak.detectors.fileformats
+.. automodule:: genscan.detectors.fileformats
    :members:
    :undoc-members:
    :show-inheritance:   

@@ -1,17 +1,17 @@
 Writing a Probe
 ###############
 
-Probes are, in some ways, the essence of garak's functionality -- they serve as the abstraction that encapsulates attacks against AI models and systems.
+Probes are, in some ways, the essence of genscan's functionality -- they serve as the abstraction that encapsulates attacks against AI models and systems.
 In this example, we're going to go over the key points of how to develop a new probe.
 
 Inheritance
 ***********
 
-All probes will inherit from ``garak.probes.base.Probe``.
+All probes will inherit from ``genscan.probes.base.Probe``.
 
 .. code-block:: python
 
-    from garak.probes.base import Probe
+    from genscan.probes.base import Probe
 
     class MyNewProbe(Probe):
         """
@@ -19,9 +19,9 @@ All probes will inherit from ``garak.probes.base.Probe``.
         """
         ...
 
-We require class docstrings in garak and enforce this requirement via a test required before merging.
+We require class docstrings in genscan and enforce this requirement via a test required before merging.
 
-Probes must always inherit from ``garak.probes.base.Probe``.
+Probes must always inherit from ``genscan.probes.base.Probe``.
 This allows probes to work nicely with `Generator` and `Attempt` objects in addition to ensuring that any `Buff`s that one might want to apply to a probe are going to work appropriately.
 
 The ``probe`` method of ``Probe`` objects is where the core logic of a probe lies.
@@ -29,14 +29,14 @@ Ideally, one would need only to populate the ``prompts`` attribute of a ``Probe`
 However, if this logic is insufficient for a custom probe, this is where the majority of the work (and potential issues) tends to lie.
 
 .. code-block:: python
-    def probe(self, generator) -> Iterable[garak.attempt.Attempt]:
+    def probe(self, generator) -> Iterable[genscan.attempt.Attempt]:
         """attempt to exploit the target generator, returning a list of results"""
         logging.debug("probe execute: %s", self)
 
         self.generator = generator
 
         # build list of attempts
-        attempts_todo: Iterable[garak.attempt.Attempt] = []
+        attempts_todo: Iterable[genscan.attempt.Attempt] = []
         prompts = list(self.prompts)
         for seq, prompt in enumerate(prompts):
             attempts_todo.append(self._mint_attempt(prompt, seq))
@@ -113,7 +113,7 @@ Many of these are decent defaults, though there are a few that we absolutely wan
             "payload:jailbreak",
         ]
         goal = "disregard the system prompt"
-        doc_uri = "https://garak.ai"
+        doc_uri = "https://genscan.ai"
         active = False
         ...
 
@@ -124,12 +124,12 @@ Once the logic for our probe is written, you'll want to test it before opening a
 Typically, a good place to start is by seeing if your probe can be imported!
 
 .. code-block:: bash
-    $ conda activate garak
+    $ conda activate genscan
     $ python
     $ python
     Python 3.11.5 (main, Sep 11 2023, 08:31:25) [Clang 14.0.6 ] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
-    >>> import garak.probes.mynewprobe
+    >>> import genscan.probes.mynewprobe
     >>>
 
 If you can run this with no error, you're ready to move on to the next phase of testing.
@@ -138,24 +138,24 @@ Otherwise, try to address the encountered errors.
 Let's try running our new probe against a HuggingFace ``Pipeline`` using ``meta-llama/Llama-2-7b-chat-hf``, a notoriously tricky model to get to behave badly.
 
 .. code-block:: bash
-  $ garak -m huggingface -n meta-llama/Llama-2-7b-chat-hf -p mynewprobe.MyNewProbe
+  $ genscan -m huggingface -n meta-llama/Llama-2-7b-chat-hf -p mynewprobe.MyNewProbe
 
 If it all runs well, you'll get a log and a hitlog file, which tell you how successful your new probe was!
-If you encounter errors, go through and try to address them. You can look at the bottom of the `garak.log` file, whose path is printed in the output every time you call garak, to see what errors there are.
+If you encounter errors, go through and try to address them. You can look at the bottom of the `genscan.log` file, whose path is printed in the output every time you call genscan, to see what errors there are.
 
-If you want to debug your probe interactively, try using something like ``p = garak._plugins.load_plugin("probes.mynewprobe.MyNewProbe")`` from a Python prompt to load the probe. The variable ``p`` will be assigned an instance of the probe (if instantiation was successful) and you can test a lot of the probe's intended functionality from here.
+If you want to debug your probe interactively, try using something like ``p = genscan._plugins.load_plugin("probes.mynewprobe.MyNewProbe")`` from a Python prompt to load the probe. The variable ``p`` will be assigned an instance of the probe (if instantiation was successful) and you can test a lot of the probe's intended functionality from here.
 
 
 Finally, check a few properties:
 
-* Does the new probe appear in ``python -m garak --list_probes``?
-* Does the probe run? ``python -m garak -m test -p mynewprobe.MyNewProbe``
-* Do the garak tests pass? ``python -m pytest tests/``
+* Does the new probe appear in ``python -m genscan --list_probes``?
+* Does the probe run? ``python -m genscan -m test -p mynewprobe.MyNewProbe``
+* Do the genscan tests pass? ``python -m pytest tests/``
 
 Done!
 *****
 
-Congratulations on writing a probe for garak!
+Congratulations on writing a probe for genscan!
 
-If you've tested your probe and validated that it works, run ``black`` to format your code in accordance with garak code standards.
+If you've tested your probe and validated that it works, run ``black`` to format your code in accordance with genscan code standards.
 Once your code is properly tested and formatted, push your work to your github fork and open a pull request -- thanks for your contribution!

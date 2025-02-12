@@ -1,7 +1,7 @@
-garak.detectors.perspective
+genscan.detectors.perspective
 ===========================
 
-.. automodule:: garak.detectors.perspective
+.. automodule:: genscan.detectors.perspective
    :members:
    :undoc-members:
    :show-inheritance:   

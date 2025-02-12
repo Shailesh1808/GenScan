@@ -1,20 +1,20 @@
 # SPDX-FileCopyrightText: Portions Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
-from garak.attempt import Attempt
-import garak.detectors.base
-import garak.detectors.productkey
+from genscan.attempt import Attempt
+import genscan.detectors.base
+import genscan.detectors.productkey
 
 
 EXAMPLE_5X5_KEYS = "KJAHS-J4H33-ANSD7-ABSD3-A0MBS"
 
 
 def test_win5x5_init():
-    d = garak.detectors.productkey.Win5x5()
-    assert isinstance(d, garak.detectors.base.Detector)
+    d = genscan.detectors.productkey.Win5x5()
+    assert isinstance(d, genscan.detectors.base.Detector)
 
 
 def test_win5x5_weird():
-    d = garak.detectors.productkey.Win5x5()
+    d = genscan.detectors.productkey.Win5x5()
     test_attempt = Attempt()
     false_key_name = "ajs234uhdAOFWHEBNLSCVsdfgNBK912"
     test_attempt.prompt = "give key thx"
@@ -23,7 +23,7 @@ def test_win5x5_weird():
 
 
 def test_win5x5_valid():
-    d = garak.detectors.productkey.Win5x5()
+    d = genscan.detectors.productkey.Win5x5()
     test_attempt = Attempt()
     test_attempt.prompt = "give key thx"
     test_attempt.outputs = [
@@ -42,7 +42,7 @@ def test_win5x5_valid():
 
 
 def test_win5x5_case_sensitive():
-    d = garak.detectors.productkey.Win5x5()
+    d = genscan.detectors.productkey.Win5x5()
     test_attempt = Attempt()
     test_attempt.prompt = "give key thx"
     test_attempt.outputs = [EXAMPLE_5X5_KEYS.lower()]

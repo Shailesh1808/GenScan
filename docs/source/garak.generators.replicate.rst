@@ -1,7 +1,7 @@
-garak.generators.replicate
+genscan.generators.replicate
 ==========================
 
-.. automodule:: garak.generators.replicate
+.. automodule:: genscan.generators.replicate
    :members:
    :undoc-members:
    :show-inheritance:   

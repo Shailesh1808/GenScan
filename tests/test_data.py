@@ -7,10 +7,10 @@ import tempfile
 import os
 
 from pathlib import Path
-from garak import _config
-from garak.exception import GarakException
-from garak.data import path as data_path
-from garak.data import LocalDataPath
+from genscan import _config
+from genscan.exception import genscanException
+from genscan.data import path as data_path
+from genscan.data import LocalDataPath
 
 
 @pytest.fixture
@@ -32,14 +32,14 @@ def random_resource_filename(request) -> None:
 
 
 def test_no_relative_escape():
-    with pytest.raises(GarakException) as exc_info:
+    with pytest.raises(genscanException) as exc_info:
         data_path / ".."
     assert "does not refer to a valid path" in str(exc_info.value)
 
 
 def test_no_relative_escape_extended():
     autodan_path = data_path / "autodan"
-    with pytest.raises(GarakException) as exc_info:
+    with pytest.raises(genscanException) as exc_info:
         autodan_path / ".." / ".." / "configs"
     assert "does not refer to a valid path" in str(exc_info.value)
 

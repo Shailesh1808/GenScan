@@ -5,7 +5,7 @@ import importlib
 import pytest
 import re
 
-from garak import _config, _plugins
+from genscan import _config, _plugins
 
 PROBES = [classname for (classname, active) in _plugins.enumerate_plugins("probes")]
 
@@ -30,7 +30,7 @@ with open(
 @pytest.mark.parametrize("classname", PROBES)
 def test_detector_specified(classname):  # every probe should give detector(s)
     plugin_name_parts = classname.split(".")
-    module_name = "garak." + ".".join(plugin_name_parts[:-1])
+    module_name = "genscan." + ".".join(plugin_name_parts[:-1])
     class_name = plugin_name_parts[-1]
     mod = importlib.import_module(module_name)
     probe_class = getattr(mod, class_name)
@@ -43,7 +43,7 @@ def test_detector_specified(classname):  # every probe should give detector(s)
 @pytest.mark.parametrize("classname", PROBES)
 def test_probe_detector_exists(classname):
     plugin_name_parts = classname.split(".")
-    module_name = "garak." + ".".join(plugin_name_parts[:-1])
+    module_name = "genscan." + ".".join(plugin_name_parts[:-1])
     class_name = plugin_name_parts[-1]
     mod = importlib.import_module(module_name)
     probe_class = getattr(mod, class_name)
@@ -56,7 +56,7 @@ def test_probe_detector_exists(classname):
 @pytest.mark.parametrize("classname", PROBES)
 def test_probe_structure(classname):
 
-    m = importlib.import_module("garak." + ".".join(classname.split(".")[:-1]))
+    m = importlib.import_module("genscan." + ".".join(classname.split(".")[:-1]))
     c = getattr(m, classname.split(".")[-1])
 
     # any parameter that has a default must be supported
@@ -97,7 +97,7 @@ def test_probe_metadata(classname):
 @pytest.mark.parametrize("plugin_name", PROBES)
 def test_check_docstring(plugin_name):
     plugin_name_parts = plugin_name.split(".")
-    module_name = "garak." + ".".join(plugin_name_parts[:-1])
+    module_name = "genscan." + ".".join(plugin_name_parts[:-1])
     class_name = plugin_name_parts[-1]
     mod = importlib.import_module(module_name)
     doc = getattr(getattr(mod, class_name), "__doc__")
@@ -113,7 +113,7 @@ def test_check_docstring(plugin_name):
 @pytest.mark.parametrize("classname", PROBES)
 def test_tag_format(classname):
     plugin_name_parts = classname.split(".")
-    module_name = "garak." + ".".join(plugin_name_parts[:-1])
+    module_name = "genscan." + ".".join(plugin_name_parts[:-1])
     class_name = plugin_name_parts[-1]
     mod = importlib.import_module(module_name)
     cls = getattr(mod, class_name)

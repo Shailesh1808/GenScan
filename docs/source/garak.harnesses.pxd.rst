@@ -1,7 +1,7 @@
-garak.harnesses.pxd
+genscan.harnesses.pxd
 ===================
 
-.. automodule:: garak.harnesses.pxd
+.. automodule:: genscan.harnesses.pxd
    :members:
    :undoc-members:
    :show-inheritance:   

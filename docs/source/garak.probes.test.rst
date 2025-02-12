@@ -1,7 +1,7 @@
-garak.probes.test
+genscan.probes.test
 =================
 
-.. automodule:: garak.probes.test
+.. automodule:: genscan.probes.test
    :members:
    :undoc-members:
    :show-inheritance:   

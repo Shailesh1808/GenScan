@@ -1,7 +1,7 @@
-garak.report
+genscan.report
 ============
 
-.. automodule:: garak.report
+.. automodule:: genscan.report
    :members:
    :undoc-members:
    :show-inheritance:

@@ -2,7 +2,7 @@ import os
 import pytest
 import requests_mock
 
-from garak.generators.langchain_serve import LangChainServeLLMGenerator
+from genscan.generators.langchain_serve import LangChainServeLLMGenerator
 
 
 @pytest.fixture

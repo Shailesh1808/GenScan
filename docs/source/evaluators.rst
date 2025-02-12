@@ -1,9 +1,9 @@
-garak.evaluators
+genscan.evaluators
 ================
 
 .. toctree::
    :maxdepth: 2
 
-   garak.evaluators
-   garak.evaluators.base
-   garak.evaluators.maxrecall
+   genscan.evaluators
+   genscan.evaluators.base
+   genscan.evaluators.maxrecall

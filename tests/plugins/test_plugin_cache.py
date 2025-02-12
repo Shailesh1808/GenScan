@@ -8,7 +8,7 @@ import sys
 import tempfile
 
 from pathlib import Path
-from garak._plugins import PluginCache, PluginEncoder
+from genscan._plugins import PluginCache, PluginEncoder
 
 
 @pytest.fixture(autouse=True)

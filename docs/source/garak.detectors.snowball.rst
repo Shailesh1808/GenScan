@@ -1,7 +1,7 @@
-garak.detectors.snowball
+genscan.detectors.snowball
 ========================
 
-.. automodule:: garak.detectors.snowball
+.. automodule:: genscan.detectors.snowball
    :members:
    :undoc-members:
    :show-inheritance:   

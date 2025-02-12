@@ -4,20 +4,20 @@
 import tempfile
 import importlib
 
-import garak._config
-import garak._plugins
-import garak.attempt
-import garak.generators
-import garak.probes.atkgen
-import garak.probes.base
+import genscan._config
+import genscan._plugins
+import genscan.attempt
+import genscan.generators
+import genscan.probes.atkgen
+import genscan.probes.base
 
 
 def test_atkgen_tox_load():
     importlib.reload(
-        garak._config
+        genscan._config
     )  # this might indicate more test need `_config` reset
-    p = garak._plugins.load_plugin("probes.atkgen.Tox")
-    assert isinstance(p, garak.probes.base.Probe)
+    p = genscan._plugins.load_plugin("probes.atkgen.Tox")
+    assert isinstance(p, genscan.probes.base.Probe)
     for k, v in p.DEFAULT_PARAMS.items():
         if k == "red_team_model_config":
             continue
@@ -25,7 +25,7 @@ def test_atkgen_tox_load():
 
 
 def test_atkgen_config():
-    p = garak._plugins.load_plugin("probes.atkgen.Tox")
+    p = genscan._plugins.load_plugin("probes.atkgen.Tox")
     rt_mod, rt_klass = p.red_team_model_type.split(".")
     assert p.red_team_model_config == {
         "generators": {
@@ -40,23 +40,23 @@ def test_atkgen_config():
 
 
 def test_atkgen_one_pass():
-    garak._config.load_base_config()
-    garak._config.plugins.probes["atkgen"][
+    genscan._config.load_base_config()
+    genscan._config.plugins.probes["atkgen"][
         "generations"
     ] = 1  # we only need one conversation
-    p = garak._plugins.load_plugin("probes.atkgen.Tox", config_root=garak._config)
+    p = genscan._plugins.load_plugin("probes.atkgen.Tox", config_root=genscan._config)
     p.max_calls = 1  # we don't need a full conversation
-    g = garak._plugins.load_plugin("generators.test.Repeat", config_root=garak._config)
+    g = genscan._plugins.load_plugin("generators.test.Repeat", config_root=genscan._config)
     with tempfile.NamedTemporaryFile(mode="w+") as temp_report_file:
-        garak._config.transient.reportfile = temp_report_file
-        garak._config.transient.report_filename = temp_report_file.name
+        genscan._config.transient.reportfile = temp_report_file
+        genscan._config.transient.report_filename = temp_report_file.name
         result = p.probe(g)
     assert isinstance(
-        p.redteamer, garak.generators.base.Generator
+        p.redteamer, genscan.generators.base.Generator
     ), "atkgen redteamer should be a generator"
     assert isinstance(result, list), "probe results should be a list"
     assert isinstance(
-        result[0], garak.attempt.Attempt
+        result[0], genscan.attempt.Attempt
     ), "probe results should be a list of attempt.Attempt"
     assert "turns" in result[0].notes, "atkgen attempts should have a list of turns"
     assert isinstance(
@@ -73,7 +73,7 @@ def test_atkgen_one_pass():
 def test_atkgen_custom_model():
     red_team_model_type = "test.Single"
     red_team_model_name = ""
-    garak._config.load_base_config()
+    genscan._config.load_base_config()
     rt_custom_generator_config = {
         "probes": {
             "atkgen": {
@@ -85,7 +85,7 @@ def test_atkgen_custom_model():
             }
         }
     }
-    p = garak._plugins.load_plugin(
+    p = genscan._plugins.load_plugin(
         "probes.atkgen.Tox", config_root=rt_custom_generator_config
     )
     p.max_calls = 1  # we don't need a full conversation
@@ -95,10 +95,10 @@ def test_atkgen_custom_model():
     assert (
         p.red_team_model_name == red_team_model_name
     ), "red team model name config should be loaded"
-    g = garak._plugins.load_plugin("generators.test.Repeat", config_root=garak._config)
+    g = genscan._plugins.load_plugin("generators.test.Repeat", config_root=genscan._config)
     with tempfile.NamedTemporaryFile(mode="w+") as temp_report_file:
-        garak._config.transient.reportfile = temp_report_file
-        garak._config.transient.report_filename = temp_report_file.name
+        genscan._config.transient.reportfile = temp_report_file
+        genscan._config.transient.report_filename = temp_report_file.name
         result = p.probe(g)
     assert (
         p.redteamer.name == red_team_model_type.split(".")[-1]

@@ -1,7 +1,7 @@
-garak.harnesses.base
+genscan.harnesses.base
 ====================
 
-.. automodule:: garak.harnesses.base
+.. automodule:: genscan.harnesses.base
    :members:
    :undoc-members:
    :show-inheritance:   

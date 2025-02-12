@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import pytest
-from garak.configurable import Configurable
-from garak._config import GarakSubConfig
+from genscan.configurable import Configurable
+from genscan._config import genscanSubConfig
 
 
 @pytest.fixture
 def generator_sub_config():
-    config = GarakSubConfig()
+    config = genscanSubConfig()
     generators = {
         "mock": {
             "constructor_param": "from_config",
@@ -22,7 +22,7 @@ def generator_sub_config():
 
 class mockConfigurable(Configurable):
     # Configurable is coupled to hierarchy of plugin types
-    __module__ = "garak.generators.mock"
+    __module__ = "genscan.generators.mock"
 
     DEFAULT_PARAMS = {
         "class_var": "from_class",
@@ -36,7 +36,7 @@ class mockConfigurable(Configurable):
         self,
         constructor_param=None,
         defaulted_constructor_param=None,
-        config_root=GarakSubConfig(),
+        config_root=genscanSubConfig(),
     ):
         self.constructor_param = constructor_param
         self.defaulted_constructor_param = defaulted_constructor_param
@@ -92,7 +92,7 @@ def test_config_mask_class_vars_to_instance(generator_sub_config):
 # when `_supported_params` exist unknown params are rejected
 def test_config_supported_params(generator_sub_config):
     class mock_supported(mockConfigurable):
-        __module__ = "garak.generators.mock"
+        __module__ = "genscan.generators.mock"
 
         _supported_params = ("constructor_param", "defaulted_constructor_param")
 

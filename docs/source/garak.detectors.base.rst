@@ -1,7 +1,7 @@
-garak.detectors.base
+genscan.detectors.base
 ====================
 
-.. automodule:: garak.detectors.base
+.. automodule:: genscan.detectors.base
    :members:
    :undoc-members:
    :show-inheritance:   

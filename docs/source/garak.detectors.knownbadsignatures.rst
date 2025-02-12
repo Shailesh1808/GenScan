@@ -1,7 +1,7 @@
-garak.detectors.knownbadsignatures
+genscan.detectors.knownbadsignatures
 ==================================
 
-.. automodule:: garak.detectors.knownbadsignatures
+.. automodule:: genscan.detectors.knownbadsignatures
    :members:
    :undoc-members:
    :show-inheritance:   

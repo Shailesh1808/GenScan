@@ -1,7 +1,7 @@
-garak.probes.base
+genscan.probes.base
 =================
 
-This class defines the basic structure of garak's probes. All probes inherit from garak.probes.base.Probe.
+This class defines the basic structure of genscan's probes. All probes inherit from genscan.probes.base.Probe.
 
 Attributes:
 
@@ -53,7 +53,7 @@ The general flow in ``probe()`` is:
 10. **_postprocess_hook()**. Called near the end of ``_execute_attempt()`` to apply final postprocessing to attempts after generation. Can be used to restore state, e.g. if generator parameters were adjusted, or to clean up generator output.
 
 
-.. automodule:: garak.probes.base
+.. automodule:: genscan.probes.base
    :members:
    :undoc-members:
    :show-inheritance:   

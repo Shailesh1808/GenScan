@@ -1,7 +1,7 @@
-garak.generators.octo
+genscan.generators.octo
 =====================
 
-.. automodule:: garak.generators.octo
+.. automodule:: genscan.generators.octo
    :members:
    :undoc-members:
    :show-inheritance:   

@@ -1,7 +1,7 @@
-garak.exception
+genscan.exception
 ===============
 
-.. automodule:: garak.exception
+.. automodule:: genscan.exception
    :members:
    :undoc-members:
    :show-inheritance:   

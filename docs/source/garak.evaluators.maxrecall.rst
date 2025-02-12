@@ -1,7 +1,7 @@
-garak.evaluators.maxrecall
+genscan.evaluators.maxrecall
 ==========================
 
-.. automodule:: garak.evaluators.maxrecall
+.. automodule:: genscan.evaluators.maxrecall
    :members:
    :undoc-members:
    :show-inheritance:   

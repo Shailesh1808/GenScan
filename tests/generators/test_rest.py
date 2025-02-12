@@ -1,9 +1,9 @@
 import json
 import pytest
 
-from garak import _config, _plugins
+from genscan import _config, _plugins
 
-from garak.generators.rest import RestGenerator
+from genscan.generators.rest import RestGenerator
 
 DEFAULT_NAME = "REST Test"
 DEFAULT_URI = "https://www.wikidata.org/wiki/Q22971"
@@ -12,7 +12,7 @@ DEFAULT_TEXT_RESPONSE = "Here's your model response"
 
 @pytest.fixture
 def set_rest_config():
-    _config.run.user_agent = "test user agent, garak.ai"
+    _config.run.user_agent = "test user agent, genscan.ai"
     _config.plugins.generators["rest"] = {}
     _config.plugins.generators["rest"]["RestGenerator"] = {
         "name": DEFAULT_NAME,
@@ -158,14 +158,14 @@ def test_rest_valid_proxy(mocker, requests_mock):
 
 @pytest.mark.usefixtures("set_rest_config")
 def test_rest_invalid_proxy(requests_mock):
-    from garak.exception import GarakException
+    from genscan.exception import genscanException
 
     test_proxies = [
         "http://localhost:8080",
         "https://localhost:8443",
     ]
     _config.plugins.generators["rest"]["RestGenerator"]["proxies"] = test_proxies
-    with pytest.raises(GarakException) as exc_info:
+    with pytest.raises(genscanException) as exc_info:
         _plugins.load_plugin("generators.rest.RestGenerator", config_root=_config)
     assert "not in the required format" in str(exc_info.value)
 

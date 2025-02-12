@@ -10,14 +10,14 @@ import tempfile
 
 import pytest
 
-from garak.attempt import Attempt
-import garak.detectors.base
-import garak.detectors.fileformats
+from genscan.attempt import Attempt
+import genscan.detectors.base
+import genscan.detectors.fileformats
 
 
 def test_possiblepickle_init():
-    d = garak.detectors.fileformats.PossiblePickleName()
-    assert isinstance(d, garak.detectors.base.Detector)
+    d = genscan.detectors.fileformats.PossiblePickleName()
+    assert isinstance(d, genscan.detectors.base.Detector)
 
 
 possible_pickles = [
@@ -31,12 +31,12 @@ possible_pickles = [
 
 @pytest.mark.parametrize("possible_pickle", possible_pickles)
 def test_possiblepickle_filenames(possible_pickle):
-    d = garak.detectors.fileformats.PossiblePickleName()
+    d = genscan.detectors.fileformats.PossiblePickleName()
     assert d._test_file(possible_pickle[0]) == possible_pickle[1]
 
 
 def test_fileispickled_invalid_format():
-    d = garak.detectors.fileformats.FileIsPickled()
+    d = genscan.detectors.fileformats.FileIsPickled()
     plain_attempt = Attempt(prompt="")
     plain_attempt.outputs = ["a", "b", "c"]
     with pytest.raises(
@@ -46,7 +46,7 @@ def test_fileispickled_invalid_format():
 
 
 def test_fileispickled_valid_format():
-    d = garak.detectors.fileformats.FileIsPickled()
+    d = genscan.detectors.fileformats.FileIsPickled()
     file_attempt = Attempt(prompt="")
     file_attempt.notes["format"] = "local filename"
     file_attempt.outputs = [""]
@@ -55,7 +55,7 @@ def test_fileispickled_valid_format():
 
 
 def test_fileispickled_nonpickle():
-    d = garak.detectors.fileformats.FileIsPickled()
+    d = genscan.detectors.fileformats.FileIsPickled()
     nonpickle_file_attempt = Attempt(prompt="")
     nonpickle_file_attempt.notes["format"] = "local filename"
     with tempfile.NamedTemporaryFile(mode="w+", delete=False) as nonpickle_file:
@@ -69,7 +69,7 @@ def test_fileispickled_nonpickle():
 
 
 def test_fileispickled_pickle_default():
-    d = garak.detectors.fileformats.FileIsPickled()
+    d = genscan.detectors.fileformats.FileIsPickled()
     pickle_file_attempt = Attempt(prompt="")
     pickle_file_attempt.notes["format"] = "local filename"
     with tempfile.NamedTemporaryFile(mode="wb+", delete=False) as pickle_file:
@@ -86,7 +86,7 @@ pickle_versions = [0, 1, 2, 3, 4, 5]
 
 @pytest.mark.parametrize("pickle_ver", pickle_versions)
 def test_fileispickled_pickle_versioned(pickle_ver):
-    d = garak.detectors.fileformats.FileIsPickled()
+    d = genscan.detectors.fileformats.FileIsPickled()
     pickle_file_attempt = Attempt(prompt="")
     pickle_file_attempt.notes["format"] = "local filename"
     with tempfile.NamedTemporaryFile(mode="wb+", delete=False) as pickle_file:
@@ -99,9 +99,9 @@ def test_fileispickled_pickle_versioned(pickle_ver):
 
 
 def test_fileisexectuable_nonexec():
-    exec_attempt = garak.attempt.Attempt(prompt="")
+    exec_attempt = genscan.attempt.Attempt(prompt="")
     exec_attempt.notes["format"] = "local filename"
-    d = garak.detectors.fileformats.FileIsExecutable()
+    d = genscan.detectors.fileformats.FileIsExecutable()
     with tempfile.NamedTemporaryFile(mode="w+", delete=False) as test_file:
         test_file.write("I'm a very good tailor.")
         test_file.close()
@@ -139,10 +139,10 @@ except ImportError as e:
     "encoded_exec_filename", glob.glob(str(path_prefix / "*.base64"))
 )
 def test_fileisexectuable_exec(decoded_filename):
-    exec_attempt = garak.attempt.Attempt(prompt="")
+    exec_attempt = genscan.attempt.Attempt(prompt="")
     exec_attempt.notes["format"] = "local filename"
 
-    d = garak.detectors.fileformats.FileIsExecutable()
+    d = genscan.detectors.fileformats.FileIsExecutable()
     exec_attempt.outputs = [decoded_filename]
     results = d.detect(exec_attempt)
     assert list(results) == [1.0]

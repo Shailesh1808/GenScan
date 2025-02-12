@@ -1,7 +1,7 @@
-garak.interactive
+genscan.interactive
 =================
 
-.. automodule:: garak.interactive
+.. automodule:: genscan.interactive
    :members:
    :undoc-members:
    :show-inheritance:   

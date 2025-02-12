@@ -3,12 +3,12 @@
 
 import pytest
 
-from garak.attempt import Attempt
-import garak.detectors.base
+from genscan.attempt import Attempt
+import genscan.detectors.base
 
 
 def test_filedetector_nonexist():
-    d = garak.detectors.base.FileDetector()
+    d = genscan.detectors.base.FileDetector()
     a = Attempt(prompt="")
     a.outputs = [None, "", "/non/existing/file"]
     a.notes["format"] = d.valid_format
@@ -26,7 +26,7 @@ TEST_STRINGS = [
 
 @pytest.fixture
 def string_detector():
-    return garak.detectors.base.StringDetector(TEST_STRINGS)
+    return genscan.detectors.base.StringDetector(TEST_STRINGS)
 
 
 def test_case_sensitive_exact_match(string_detector):
@@ -139,7 +139,7 @@ MATCHTYPE_AND_CASING_CASES = {
 def test_matchtype_with_case_sensitivity(matchtype):
     """Test case sensitivity with different matchtypes"""
 
-    detector = garak.detectors.base.StringDetector([TEST_STRINGS[0]])
+    detector = genscan.detectors.base.StringDetector([TEST_STRINGS[0]])
     detector.matchtype = matchtype
 
     for text, should_match_sensitive in MATCHTYPE_AND_CASING_CASES[matchtype]:
@@ -160,7 +160,7 @@ def test_matchtype_with_case_sensitivity(matchtype):
 
 
 def test_stringdetector_word_boundary_matching():
-    detector = garak.detectors.base.StringDetector(TEST_STRINGS)
+    detector = genscan.detectors.base.StringDetector(TEST_STRINGS)
     detector.matchtype = "word"
 
     test_cases = [
@@ -181,7 +181,7 @@ def test_stringdetector_word_boundary_matching():
 
 
 def test_stringdetector_startswith():
-    detector = garak.detectors.base.StringDetector(TEST_STRINGS)
+    detector = genscan.detectors.base.StringDetector(TEST_STRINGS)
     detector.matchtype = "startswith"
 
     test_cases = [

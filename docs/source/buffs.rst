@@ -1,4 +1,4 @@
-garak.buffs
+genscan.buffs
 ===========
 
 Buff plugins augment, constrain, or otherwise perturb the interaction
@@ -13,9 +13,9 @@ implemented buffs.
 .. toctree::
    :maxdepth: 2
 
-   garak.buffs
-   garak.buffs.base
-   garak.buffs.encoding
-   garak.buffs.low_resource_languages
-   garak.buffs.lowercase
-   garak.buffs.paraphrase
+   genscan.buffs
+   genscan.buffs.base
+   genscan.buffs.encoding
+   genscan.buffs.low_resource_languages
+   genscan.buffs.lowercase
+   genscan.buffs.paraphrase

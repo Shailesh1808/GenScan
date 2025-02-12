@@ -13,8 +13,8 @@ import tempfile
 
 from pytest_httpserver import HTTPServer
 
-from garak import _config
-import garak.cli
+from genscan import _config
+import genscan.cli
 
 
 SITE_YAML_FILENAME = "TESTONLY.site.yaml.bak"
@@ -100,7 +100,7 @@ def allow_site_config(request):
     site_cfg_moved = False
     try:
         shutil.move(
-            _config.transient.config_dir / "garak.site.yaml", SITE_YAML_FILENAME
+            _config.transient.config_dir / "genscan.site.yaml", SITE_YAML_FILENAME
         )
         site_cfg_moved = True
     except FileNotFoundError:
@@ -109,10 +109,10 @@ def allow_site_config(request):
     def restore_site_config():
         if site_cfg_moved:
             shutil.move(
-                SITE_YAML_FILENAME, _config.transient.config_dir / "garak.site.yaml"
+                SITE_YAML_FILENAME, _config.transient.config_dir / "genscan.site.yaml"
             )
-        elif os.path.exists(_config.transient.config_dir / "garak.site.yaml"):
-            os.remove(_config.transient.config_dir / "garak.site.yaml")
+        elif os.path.exists(_config.transient.config_dir / "genscan.site.yaml"):
+            os.remove(_config.transient.config_dir / "genscan.site.yaml")
 
     request.addfinalizer(restore_site_config)
 
@@ -201,7 +201,7 @@ def test_xdg_defaults():
 def test_cli_solo_settings(option):
     importlib.reload(_config)
 
-    garak.cli.main(
+    genscan.cli.main(
         [f"--{option}", "--list_config"]
     )  # add list_config as the action so we don't actually run
     subconfig = getattr(_config, param_locs[option])
@@ -213,7 +213,7 @@ def test_cli_param_settings(param):
     importlib.reload(_config)
 
     option, value = param
-    garak.cli.main(
+    genscan.cli.main(
         [f"--{option}", str(value), "--list_config"]
     )  # add list_config as the action so we don't actually run
     subconfig = getattr(_config, param_locs[option])
@@ -225,7 +225,7 @@ def test_cli_spec_settings(param):
     importlib.reload(_config)
 
     option, value, configname = param
-    garak.cli.main(
+    genscan.cli.main(
         [f"--{option}", str(value), "--list_config"]
     )  # add list_config as the action so we don't actually run
     assert getattr(_config.plugins, configname) == value
@@ -235,14 +235,14 @@ def test_cli_spec_settings(param):
 def test_cli_shortform():
     importlib.reload(_config)
 
-    garak.cli.main(["-s", "444", "--list_config"])
+    genscan.cli.main(["-s", "444", "--list_config"])
     assert _config.run.seed == 444
     if _config.transient.reportfile is not None:
         _config.transient.reportfile.close()
         if os.path.exists(_config.transient.report_filename):
             os.remove(_config.transient.report_filename)
 
-    garak.cli.main(
+    genscan.cli.main(
         ["-g", "444", "--list_config"]
     )  # seed gets special treatment, try another
     assert _config.run.generations == 444
@@ -262,7 +262,7 @@ def test_yaml_param_settings(param):
         ]
         tmp.write("\n".join(file_data).encode("utf-8"))
         tmp.close()
-        garak.cli.main(
+        genscan.cli.main(
             ["--config", tmp.name, "--list_config"]
         )  # add list_config as the action so we don't actually run
         subconfig = getattr(_config, param_locs[option])
@@ -278,11 +278,11 @@ def test_site_yaml_overrides_core_yaml():
     importlib.reload(_config)
 
     with open(
-        _config.transient.config_dir / "garak.site.yaml", "w", encoding="utf-8"
+        _config.transient.config_dir / "genscan.site.yaml", "w", encoding="utf-8"
     ) as f:
         f.write("---\nrun:\n  eval_threshold: 0.777\n")
         f.flush()
-        garak.cli.main(["--list_config"])
+        genscan.cli.main(["--list_config"])
 
     assert (
         _config.run.eval_threshold == 0.777
@@ -295,7 +295,7 @@ def test_run_yaml_overrides_site_yaml():
     importlib.reload(_config)
 
     with open(
-        _config.transient.config_dir / "garak.site.yaml", "w", encoding="utf-8"
+        _config.transient.config_dir / "genscan.site.yaml", "w", encoding="utf-8"
     ) as f:
         file_data = [
             "---",
@@ -304,7 +304,7 @@ def test_run_yaml_overrides_site_yaml():
         ]
         f.write("\n".join(file_data))
         f.flush()
-        garak.cli.main(["--list_config", "--eval_threshold", str(0.9001)])
+        genscan.cli.main(["--list_config", "--eval_threshold", str(0.9001)])
 
     assert (
         _config.run.eval_threshold == 0.9001
@@ -325,7 +325,7 @@ def test_cli_overrides_run_yaml():
         ]
         tmp.write("\n".join(file_data).encode("utf-8"))
         tmp.close()
-        garak.cli.main(
+        genscan.cli.main(
             ["--config", tmp.name, "-s", f"{override_seed}", "--list_config"]
         )  # add list_config as the action so we don't actually run
         os.remove(tmp.name)
@@ -354,7 +354,7 @@ def test_probe_options_yaml(capsys):
             ).encode("utf-8")
         )
         tmp.close()
-        garak.cli.main(
+        genscan.cli.main(
             ["--config", tmp.name, "--list_config"]
         )  # add list_config as the action so we don't actually run
         os.remove(tmp.name)
@@ -385,7 +385,7 @@ def test_generator_options_yaml(capsys):
             ).encode("utf-8")
         )
         tmp.close()
-        garak.cli.main(
+        genscan.cli.main(
             ["--config", tmp.name, "--list_config"]
         )  # add list_config as the action so we don't actually run
         os.remove(tmp.name)
@@ -415,7 +415,7 @@ def test_run_from_yaml(capsys):
             ).encode("utf-8")
         )
         tmp.close()
-        garak.cli.main(["--config", tmp.name])
+        genscan.cli.main(["--config", tmp.name])
         os.remove(tmp.name)
     result = capsys.readouterr()
     output = result.out
@@ -429,7 +429,7 @@ def test_run_from_yaml(capsys):
     assert "ok on   10/  10" in all_output
     assert "always.Pass:" in all_output
     assert "test.Blank" in all_output
-    assert "garak run complete" in all_output
+    assert "genscan run complete" in all_output
 
 
 # cli generator options file loads
@@ -443,7 +443,7 @@ def test_cli_generator_options_file():
         json.dump({"test": {"Blank": {"this_is_a": "generator"}}}, tmp)
         tmp.close()
         # invoke cli
-        garak.cli.main(
+        genscan.cli.main(
             ["--generator_option_file", tmp.name, "--list_config"]
         )  # add list_config as the action so we don't actually run
         os.remove(tmp.name)
@@ -462,7 +462,7 @@ def test_cli_probe_options_file():
         json.dump({"test": {"Blank": {"probes_in_this_config": 1}}}, tmp)
         tmp.close()
         # invoke cli
-        garak.cli.main(
+        genscan.cli.main(
             ["--probe_option_file", tmp.name, "--list_config"]
         )  # add list_config as the action so we don't actually run
         os.remove(tmp.name)
@@ -495,7 +495,7 @@ def test_cli_probe_options_overrides_yaml_probe_options():
             )
             probe_yaml_file.close()
             # invoke cli
-            garak.cli.main(
+            genscan.cli.main(
                 [
                     "--config",
                     probe_yaml_file.name,
@@ -533,7 +533,7 @@ def test_cli_generator_options_overrides_yaml_probe_options():
             str(cli_generations_count),
             "--list_config",
         ]  # add list_config as the action so we don't actually run
-        garak.cli.main(args)
+        genscan.cli.main(args)
         os.remove(generator_yaml_file.name)
     # check it was loaded
     assert _config.run.generations == cli_generations_count
@@ -543,7 +543,7 @@ def test_cli_generator_options_overrides_yaml_probe_options():
 # more refactor for namespace keys
 def test_blank_probe_instance_loads_yaml_config():
     importlib.reload(_config)
-    import garak._plugins
+    import genscan._plugins
 
     probe_name = "test.Blank"
     probe_namespace, probe_klass = probe_name.split(".")
@@ -564,9 +564,9 @@ def test_blank_probe_instance_loads_yaml_config():
             ).encode("utf-8")
         )
         tmp.close()
-        output = garak.cli.main(["--config", tmp.name, "-p", probe_name])
+        output = genscan.cli.main(["--config", tmp.name, "-p", probe_name])
         os.remove(tmp.name)
-    probe = garak._plugins.load_plugin(f"probes.{probe_name}")
+    probe = genscan._plugins.load_plugin(f"probes.{probe_name}")
     assert probe.goal == revised_goal
 
 
@@ -574,7 +574,7 @@ def test_blank_probe_instance_loads_yaml_config():
 # more refactor for namespace keys
 def test_blank_probe_instance_loads_cli_config():
     importlib.reload(_config)
-    import garak._plugins
+    import genscan._plugins
 
     probe_name = "test.Blank"
     probe_namespace, probe_klass = probe_name.split(".")
@@ -589,8 +589,8 @@ def test_blank_probe_instance_loads_cli_config():
             }  # generations is required when cli called without a model
         ),
     ]
-    garak.cli.main(args)
-    probe = garak._plugins.load_plugin(f"probes.{probe_name}")
+    genscan.cli.main(args)
+    probe = genscan._plugins.load_plugin(f"probes.{probe_name}")
     assert probe.goal == revised_goal
 
 
@@ -598,7 +598,7 @@ def test_blank_probe_instance_loads_cli_config():
 # more refactor for namespace keys
 def test_blank_generator_instance_loads_yaml_config():
     importlib.reload(_config)
-    import garak._plugins
+    import genscan._plugins
 
     generator_name = "test.Blank"
     generator_namespace, generator_klass = generator_name.split(".")
@@ -618,11 +618,11 @@ def test_blank_generator_instance_loads_yaml_config():
             ).encode("utf-8")
         )
         tmp.close()
-        garak.cli.main(
+        genscan.cli.main(
             ["--config", tmp.name, "--model_type", generator_name, "--probes", "none"]
         )
         os.remove(tmp.name)
-    gen = garak._plugins.load_plugin(f"generators.{generator_name}")
+    gen = genscan._plugins.load_plugin(f"generators.{generator_name}")
     assert gen.temperature == revised_temp
     assert gen.test_val == "test_blank_value"
 
@@ -631,7 +631,7 @@ def test_blank_generator_instance_loads_yaml_config():
 # more refactor for namespace keys
 def test_blank_generator_instance_loads_cli_config():
     importlib.reload(_config)
-    import garak._plugins
+    import genscan._plugins
 
     generator_name = "test.Repeat"
     generator_namespace, generator_klass = generator_name.split(".")
@@ -648,8 +648,8 @@ def test_blank_generator_instance_loads_cli_config():
         .replace(" ", "")
         .strip(),
     ]
-    garak.cli.main(args)
-    gen = garak._plugins.load_plugin(f"generators.{generator_name}")
+    genscan.cli.main(args)
+    gen = genscan._plugins.load_plugin(f"generators.{generator_name}")
     assert gen.temperature == revised_temp
 
 
@@ -695,11 +695,11 @@ def test_probespec_loading():
 
 def test_buff_config_assertion():
     importlib.reload(_config)
-    import garak._plugins
+    import genscan._plugins
 
     test_value = 9001
     _config.plugins.buffs["paraphrase"] = {"Fast": {"num_beams": test_value}}
-    p = garak._plugins.load_plugin("buffs.paraphrase.Fast")
+    p = genscan._plugins.load_plugin("buffs.paraphrase.Fast")
     assert p.num_beams == test_value
 
 
@@ -736,7 +736,7 @@ def test_report_dir_full_path():
                 ).encode("utf-8")
             )
             tmp.close()
-            garak.cli.main(
+            genscan.cli.main(
                 f"-m test.Blank --report_prefix abs_path_test -p test.Blank -d always.Fail --config {tmp.name}".split()
             )
             os.remove(tmp.name)
@@ -749,7 +749,7 @@ def test_report_dir_full_path():
 def test_report_prefix_with_hitlog_no_explode():
     importlib.reload(_config)
 
-    garak.cli.main(
+    genscan.cli.main(
         "-m test.Blank --report_prefix kjsfhgkjahpsfdg -p test.Blank -d always.Fail".split()
     )
     report_path = Path(_config.transient.report_filename).parent
@@ -772,7 +772,7 @@ def test_get_user_agents():
     assert isinstance(agents, dict)
 
 
-AGENT_TEST = "garak/9 - only simple tailors edition"
+AGENT_TEST = "genscan/9 - only simple tailors edition"
 
 
 def test_set_agents():

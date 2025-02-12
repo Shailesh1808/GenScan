@@ -1,7 +1,7 @@
-garak.probes.grandma
+genscan.probes.grandma
 ====================
 
-.. automodule:: garak.probes.grandma
+.. automodule:: genscan.probes.grandma
    :members:
    :undoc-members:
    :show-inheritance:   

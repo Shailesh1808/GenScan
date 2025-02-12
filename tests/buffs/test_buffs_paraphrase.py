@@ -3,7 +3,7 @@
 
 import pytest
 
-from garak import _plugins
+from genscan import _plugins
 
 BUFFS = [
     classname

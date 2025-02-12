@@ -1,7 +1,7 @@
-garak.harnesses
+genscan.harnesses
 ===============
 
-.. automodule:: garak.harnesses
+.. automodule:: genscan.harnesses
    :members:
    :undoc-members:
    :show-inheritance:   

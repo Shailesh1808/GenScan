@@ -1,7 +1,7 @@
-garak.generators.groq
+genscan.generators.groq
 ====================
 
-.. automodule:: garak.generators.groq
+.. automodule:: genscan.generators.groq
    :members:
    :undoc-members:
    :show-inheritance:   

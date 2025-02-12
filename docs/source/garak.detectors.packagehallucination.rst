@@ -1,7 +1,7 @@
-garak.detectors.packagehallucination
+genscan.detectors.packagehallucination
 ====================================
 
-.. automodule:: garak.detectors.packagehallucination
+.. automodule:: genscan.detectors.packagehallucination
    :members:
    :undoc-members:
    :show-inheritance:   

@@ -1,7 +1,7 @@
-garak.detectors.misleading
+genscan.detectors.misleading
 ==========================
 
-.. automodule:: garak.detectors.misleading
+.. automodule:: genscan.detectors.misleading
    :members:
    :undoc-members:
    :show-inheritance:   

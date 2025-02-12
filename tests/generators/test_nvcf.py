@@ -3,10 +3,10 @@
 
 import pytest
 
-from garak import _config
-from garak import _plugins
-import garak.generators.base
-import garak.generators.nvcf
+from genscan import _config
+from genscan import _plugins
+import genscan.generators.base
+import genscan.generators.nvcf
 
 PLUGINS = ("NvcfChat", "NvcfCompletion")
 
@@ -18,7 +18,7 @@ def test_instantiate(klassname):
     _config.plugins.generators["nvcf"][klassname]["name"] = "placeholder name"
     _config.plugins.generators["nvcf"][klassname]["api_key"] = "placeholder key"
     g = _plugins.load_plugin(f"generators.nvcf.{klassname}")
-    assert isinstance(g, garak.generators.base.Generator)
+    assert isinstance(g, genscan.generators.base.Generator)
 
 
 @pytest.mark.parametrize("klassname", PLUGINS)

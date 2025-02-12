@@ -1,15 +1,15 @@
-from garak.attempt import Attempt
-import garak.detectors.base
-import garak.detectors.packagehallucination
+from genscan.attempt import Attempt
+import genscan.detectors.base
+import genscan.detectors.packagehallucination
 
 
 def test_pythonpypi_init():
-    d = garak.detectors.packagehallucination.PythonPypi()
-    assert isinstance(d, garak.detectors.base.Detector)
+    d = genscan.detectors.packagehallucination.PythonPypi()
+    assert isinstance(d, genscan.detectors.base.Detector)
 
 
 def test_pythonpypi_weird():
-    d = garak.detectors.packagehallucination.PythonPypi()
+    d = genscan.detectors.packagehallucination.PythonPypi()
     import_attempt = Attempt(prompt="give me some random data")
     false_package_name = "ajs234uhdAOFWHEBNLSCVsdfgNBK912"
     import_attempt.outputs = [f"import {false_package_name}"]
@@ -22,7 +22,7 @@ def test_pythonpypi_weird():
 
 
 def test_pythonpypi_stdlib():
-    d = garak.detectors.packagehallucination.PythonPypi()
+    d = genscan.detectors.packagehallucination.PythonPypi()
     import_attempt = Attempt(prompt="give me some python")
     import_attempt.outputs = [
         "import os\nimport sys\nimport json\nimport cProfile\nimport turtledemo"
@@ -36,7 +36,7 @@ def test_pythonpypi_stdlib():
 
 
 def test_pythonpypi_pypi():
-    d = garak.detectors.packagehallucination.PythonPypi()
+    d = genscan.detectors.packagehallucination.PythonPypi()
     import_attempt = Attempt(prompt="give me some python")
     import_attempt.outputs = [
         "import skbs\nimport pytest-faker\nimport transformers\nimport pyyaml"
@@ -50,7 +50,7 @@ def test_pythonpypi_pypi():
 
 
 def test_pythonpypi_case_sensitive():
-    d = garak.detectors.packagehallucination.PythonPypi()
+    d = genscan.detectors.packagehallucination.PythonPypi()
     import_attempt = Attempt(prompt="give me some python")
     import_attempt.outputs = ["import Sys"]
     assert d.detect(import_attempt) == [1.0]
@@ -60,12 +60,12 @@ def test_pythonpypi_case_sensitive():
 
 
 def test_rubygems_init():
-    d = garak.detectors.packagehallucination.RubyGems()
-    assert isinstance(d, garak.detectors.base.Detector)
+    d = genscan.detectors.packagehallucination.RubyGems()
+    assert isinstance(d, genscan.detectors.base.Detector)
 
 
 def test_rubygems_weird():
-    d = garak.detectors.packagehallucination.RubyGems()
+    d = genscan.detectors.packagehallucination.RubyGems()
     require_attempt = Attempt(prompt="give me some random data")
     false_gem_name = "ajs234uhdAOFWHEBNLSCVsdfgNBK912"
     require_attempt.outputs = [f"require '{false_gem_name}'"]
@@ -78,7 +78,7 @@ def test_rubygems_weird():
 
 
 def test_rubygems_stdlib():
-    d = garak.detectors.packagehallucination.RubyGems()
+    d = genscan.detectors.packagehallucination.RubyGems()
     require_attempt = Attempt(prompt="give me some ruby")
     require_attempt.outputs = [
         "require 'open-uri'\nrequire 'json'\nrequire 'fileutils'\nrequire 'set'\nrequire 'time'"
@@ -92,7 +92,7 @@ def test_rubygems_stdlib():
 
 
 def test_rubygems_real():
-    d = garak.detectors.packagehallucination.RubyGems()
+    d = genscan.detectors.packagehallucination.RubyGems()
     require_attempt = Attempt(prompt="give me some ruby")
     require_attempt.outputs = [
         "require 'rails'\nrequire 'rspec'\nrequire 'devise'\nrequire 'sidekiq'"
@@ -106,7 +106,7 @@ def test_rubygems_real():
 
 
 def test_rubygems_case_sensitive():
-    d = garak.detectors.packagehallucination.RubyGems()
+    d = genscan.detectors.packagehallucination.RubyGems()
     require_attempt = Attempt(prompt="give me some ruby")
     require_attempt.outputs = ["require 'Json'"]
     assert d.detect(require_attempt) == [1.0]
@@ -116,12 +116,12 @@ def test_rubygems_case_sensitive():
 
 
 def test_javascriptnpm_init():
-    d = garak.detectors.packagehallucination.JavaScriptNpm()
-    assert isinstance(d, garak.detectors.base.Detector)
+    d = genscan.detectors.packagehallucination.JavaScriptNpm()
+    assert isinstance(d, genscan.detectors.base.Detector)
 
 
 def test_javascriptnpm_weird():
-    d = garak.detectors.packagehallucination.JavaScriptNpm()
+    d = genscan.detectors.packagehallucination.JavaScriptNpm()
     import_attempt = Attempt(prompt="give me some random data")
     false_package_name = "ajs234uhdAOFWHEBNLSCVsdfgNBK912"
     import_attempt.outputs = [f"import \"{false_package_name}\""]
@@ -134,7 +134,7 @@ def test_javascriptnpm_weird():
 
 
 def test_javascriptnpm_stdlib():
-    d = garak.detectors.packagehallucination.JavaScriptNpm()
+    d = genscan.detectors.packagehallucination.JavaScriptNpm()
     import_attempt = Attempt(prompt="give me some JavaScript")
     import_attempt.outputs = [
         "import fs from 'fs';\nimport path from 'path';\nimport http from 'http';\nimport crypto from 'crypto';"
@@ -148,7 +148,7 @@ def test_javascriptnpm_stdlib():
 
 
 def test_javascriptnpm_real():
-    d = garak.detectors.packagehallucination.JavaScriptNpm()
+    d = genscan.detectors.packagehallucination.JavaScriptNpm()
     import_attempt = Attempt(prompt="give me some JavaScript")
     import_attempt.outputs = [
         "import express from 'express';\nimport react from 'react';\nimport lodash from 'lodash';\nimport axios from 'axios';"
@@ -162,7 +162,7 @@ def test_javascriptnpm_real():
 
 
 def test_javascriptnpm_case_sensitive():
-    d = garak.detectors.packagehallucination.JavaScriptNpm()
+    d = genscan.detectors.packagehallucination.JavaScriptNpm()
     import_attempt = Attempt(prompt="give me some JavaScript")
     import_attempt.outputs = ["import react from 'React';"]
     assert d.detect(import_attempt) == [1.0]
@@ -172,12 +172,12 @@ def test_javascriptnpm_case_sensitive():
 
 
 def test_rustcrates_init():
-    d = garak.detectors.packagehallucination.RustCrates()
-    assert isinstance(d, garak.detectors.base.Detector)
+    d = genscan.detectors.packagehallucination.RustCrates()
+    assert isinstance(d, genscan.detectors.base.Detector)
 
 
 def test_rustcrates_weird():
-    d = garak.detectors.packagehallucination.RustCrates()
+    d = genscan.detectors.packagehallucination.RustCrates()
     use_attempt = Attempt(prompt="give me some random data")
     false_crate_name = "ajs234uhdAOFWHEBNLSCVsdfgNBK912"
     use_attempt.outputs = [f"use {false_crate_name}::rand;"]
@@ -190,7 +190,7 @@ def test_rustcrates_weird():
 
 
 def test_rustcrates_stdlib():
-    d = garak.detectors.packagehallucination.RustCrates()
+    d = genscan.detectors.packagehallucination.RustCrates()
     use_attempt = Attempt(prompt="give me some Rust")
     use_attempt.outputs = [
         "use std::io;\nuse std::fs::File;\nuse std::collections::HashMap; \nuse std::time::Duration;"
@@ -204,7 +204,7 @@ def test_rustcrates_stdlib():
 
 
 def test_rustcrates_real():
-    d = garak.detectors.packagehallucination.RustCrates()
+    d = genscan.detectors.packagehallucination.RustCrates()
     use_attempt = Attempt(prompt="give me some Rust")
     use_attempt.outputs = [
         "use serde::Deserialize;\nuse tokio::runtime::Runtime;\nuse reqwest::Client;\nuse rand::Rng;"
@@ -218,7 +218,7 @@ def test_rustcrates_real():
 
 
 def test_rustcrates_case_sensitive():
-    d = garak.detectors.packagehallucination.RustCrates()
+    d = genscan.detectors.packagehallucination.RustCrates()
     use_attempt = Attempt(prompt="give me some Rust")
     use_attempt.outputs = ["use Std::io::Read;"]
     assert d.detect(use_attempt) == [1.0]
@@ -228,7 +228,7 @@ def test_rustcrates_case_sensitive():
 
 
 def test_rustcrates_direct_usage():
-    d = garak.detectors.packagehallucination.RustCrates()
+    d = genscan.detectors.packagehallucination.RustCrates()
     direct_use_attempt = Attempt(prompt="give me some Rust")
     direct_use_attempt.outputs = [
         """

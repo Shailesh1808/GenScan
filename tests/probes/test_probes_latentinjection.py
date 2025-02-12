@@ -3,9 +3,9 @@
 
 import pytest
 
-from garak import _plugins
-import garak.probes.base
-import garak.probes.latentinjection
+from genscan import _plugins
+import genscan.probes.base
+import genscan.probes.latentinjection
 
 LATENT_INJECTION_PROBES = [
     classname
@@ -18,7 +18,7 @@ LATENT_INJECTION_PROBES = [
 def test_latentinjection_structure(classname):
     p = _plugins.load_plugin(classname)
     assert isinstance(
-        p, garak.probes.base.Probe
+        p, genscan.probes.base.Probe
     ), "Latent injection probes must be instances of probes.base.Probe"
     assert len(p.prompts) == len(p.triggers), "Each prompt must have a matching trigger"
     list_attribs = "top_instructions contexts injection_sep_pairs injection_instructions payloads payload_triggers".split()
@@ -38,17 +38,17 @@ def test_latentinjection_structure(classname):
             _ti_e[1], str
         ), "Top-level instructions must be a string. index " + str(_ti_e[0])
     for _context_e in enumerate(p.contexts):
-        assert garak.probes.latentinjection.INJECTION_MARKER in _context_e[1], (
+        assert genscan.probes.latentinjection.INJECTION_MARKER in _context_e[1], (
             "Each context must contain an injection marker - missing f-string? index "
             + str(_context_e[0])
         )
     for _ii_e in enumerate(p.injection_instructions):
-        assert garak.probes.latentinjection.PAYLOAD_MARKER in _ii_e[1], (
+        assert genscan.probes.latentinjection.PAYLOAD_MARKER in _ii_e[1], (
             "Each injection instruction must contain a payload marker - missing f-string? index "
             + str(_ii_e[0])
         )
     for _payload_e in enumerate(p.payloads):
-        assert garak.probes.latentinjection.TRIGGER_MARKER in _payload_e[1], (
+        assert genscan.probes.latentinjection.TRIGGER_MARKER in _payload_e[1], (
             "Each payload instruction must contain a trigger marker - missing f-string? index"
             + str(_payload_e[0])
         )

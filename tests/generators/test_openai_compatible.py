@@ -9,7 +9,7 @@ import importlib
 import inspect
 
 from collections.abc import Iterable
-from garak.generators.openai import OpenAICompatible
+from genscan.generators.openai import OpenAICompatible
 
 
 # TODO: expand this when we have faster loading, currently to process all generator costs 30s for 3 tests
@@ -26,7 +26,7 @@ ENV_VAR = os.path.abspath(
 
 def compatible() -> Iterable[OpenAICompatible]:
     for classname in GENERATORS:
-        namespace = f"garak.%s" % classname[: classname.rindex(".")]
+        namespace = f"genscan.%s" % classname[: classname.rindex(".")]
         mod = importlib.import_module(namespace)
         module_klasses = set(
             [

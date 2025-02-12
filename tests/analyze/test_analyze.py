@@ -6,13 +6,13 @@ import sys
 
 import pytest
 
-from garak import cli, _config
+from genscan import cli, _config
 
-TEMP_PREFIX = "_garak_internal_test_temp"
+TEMP_PREFIX = "_genscan_internal_test_temp"
 
 
 @pytest.fixture(autouse=True)
-def garak_tiny_run() -> None:
+def genscan_tiny_run() -> None:
     cli.main(["-m", "test.Blank", "-p", "test.Blank", "--report_prefix", TEMP_PREFIX])
 
 
@@ -21,7 +21,7 @@ def test_analyze_log_runs():
         [
             sys.executable,
             "-m",
-            "garak.analyze.analyze_log",
+            "genscan.analyze.analyze_log",
             str(
                 _config.transient.data_dir
                 / _config.reporting.report_dir
@@ -38,7 +38,7 @@ def test_report_digest_runs():
         [
             sys.executable,
             "-m",
-            "garak.analyze.report_digest",
+            "genscan.analyze.report_digest",
             str(
                 _config.transient.data_dir
                 / _config.reporting.report_dir

@@ -1,7 +1,7 @@
-garak.buffs.encoding
+genscan.buffs.encoding
 ====================
 
-.. automodule:: garak.buffs.encoding
+.. automodule:: genscan.buffs.encoding
    :members:
    :undoc-members:
    :show-inheritance:   

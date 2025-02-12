@@ -2,7 +2,7 @@
 
 # -- Project information
 
-project = "garak"
+project = "genscan"
 copyright = "2023-, Leon Derczynski"
 author = "Leon Derczynski"
 

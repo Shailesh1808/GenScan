@@ -16,7 +16,7 @@ import uuid
 
 import pytest
 
-from garak import cli, _config
+from genscan import cli, _config
 
 PREFIX = "test_buff_single" + str(uuid.uuid4())
 

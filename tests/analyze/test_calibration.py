@@ -12,12 +12,12 @@
 
 import pytest
 
-import garak.analyze.calibration
+import genscan.analyze.calibration
 
 
 def test_instantiate():
-    c = garak.analyze.calibration.Calibration()
-    assert isinstance(c, garak.analyze.calibration.Calibration)
+    c = genscan.analyze.calibration.Calibration()
+    assert isinstance(c, genscan.analyze.calibration.Calibration)
     assert (
         c.calibration_successfully_loaded == True
     ), "default calibration load should use default data and succeed"
@@ -30,13 +30,13 @@ def test_instantiate():
 
 
 def test_constructor_with_missing_file():
-    c = garak.analyze.calibration.Calibration("akshjdfiojavpoij")
+    c = genscan.analyze.calibration.Calibration("akshjdfiojavpoij")
     assert c.calibration_successfully_loaded == False
     assert isinstance(c._data, dict)
     assert c._data == {}
     assert c.metadata is None
 
-    c = garak.analyze.calibration.Calibration("")
+    c = genscan.analyze.calibration.Calibration("")
     assert c.calibration_successfully_loaded == False
     assert isinstance(c._data, dict)
     assert c._data == {}
@@ -45,25 +45,25 @@ def test_constructor_with_missing_file():
 
 def test_lookup():
     # assumes this particular probe and mitigation remain in the default calibration
-    c = garak.analyze.calibration.Calibration()
+    c = genscan.analyze.calibration.Calibration()
     z = c.get_z_score("dan", "DanInTheWildMini", "mitigation", "MitigationBypass", 50)
     assert isinstance(z, float)
 
 
 def test_lookup_absent_probe_detector():
-    c = garak.analyze.calibration.Calibration()
+    c = genscan.analyze.calibration.Calibration()
     z = c.get_z_score("a", "b", "c", "d", 50)
     assert z is None
 
 
 def test_lookup_on_missing_calibration_file():
-    c = garak.analyze.calibration.Calibration("alshdfohasdgih")
+    c = genscan.analyze.calibration.Calibration("alshdfohasdgih")
     z = c.get_z_score("dan", "DanInTheWildMini", "mitigation", "MitigationBypass", 50)
     assert z is None
 
 
 def test_calc_z_score():
-    c = garak.analyze.calibration.Calibration()
+    c = genscan.analyze.calibration.Calibration()
     assert c._calc_z(0.5, 0.1, 0.5) == 0
     assert c._calc_z(0.2, 0.2, 0.0) == -1
     with pytest.raises(ZeroDivisionError) as e:
@@ -72,17 +72,17 @@ def test_calc_z_score():
 
 @pytest.mark.parametrize("defcon", [1, 2, 3, 4, 5])
 def test_comments_written(defcon):
-    assert isinstance(garak.analyze.calibration.ZSCORE_COMMENTS[defcon], str)
-    assert garak.analyze.calibration.ZSCORE_COMMENTS[defcon] != ""
+    assert isinstance(genscan.analyze.calibration.ZSCORE_COMMENTS[defcon], str)
+    assert genscan.analyze.calibration.ZSCORE_COMMENTS[defcon] != ""
 
 
 @pytest.mark.parametrize(
     "z", [0.0, -1.0, 1.0, -100000.0, 100000.0, 0.000001, 0.5, -0.5]
 )
 def test_defcon_comment(z):
-    c = garak.analyze.calibration.Calibration()
+    c = genscan.analyze.calibration.Calibration()
     defcon, comment = c.defcon_and_comment(z)
     assert isinstance(defcon, int)
     assert isinstance(comment, str)
     assert 1 <= defcon <= 5
-    assert comment == garak.analyze.calibration.ZSCORE_COMMENTS[defcon]
+    assert comment == genscan.analyze.calibration.ZSCORE_COMMENTS[defcon]

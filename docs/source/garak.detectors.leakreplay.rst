@@ -1,7 +1,7 @@
-garak.detectors.leakreplay
+genscan.detectors.leakreplay
 ==========================
 
-.. automodule:: garak.detectors.leakreplay
+.. automodule:: genscan.detectors.leakreplay
    :members:
    :undoc-members:
    :show-inheritance:   

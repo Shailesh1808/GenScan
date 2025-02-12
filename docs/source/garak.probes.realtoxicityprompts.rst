@@ -1,7 +1,7 @@
-garak.probes.realtoxicityprompts
+genscan.probes.realtoxicityprompts
 ================================
 
-.. automodule:: garak.probes.realtoxicityprompts
+.. automodule:: genscan.probes.realtoxicityprompts
    :members:
    :undoc-members:
    :show-inheritance:   

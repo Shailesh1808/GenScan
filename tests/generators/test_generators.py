@@ -6,12 +6,12 @@ import inspect
 import pytest
 import random
 
-from garak import _plugins
-from garak import _config
-from garak.generators.test import Blank, Repeat, Single
-from garak.generators.base import Generator
+from genscan import _plugins
+from genscan import _config
+from genscan.generators.test import Blank, Repeat, Single
+from genscan.generators.base import Generator
 
-DEFAULT_GENERATOR_NAME = "garak test"
+DEFAULT_GENERATOR_NAME = "genscan test"
 DEFAULT_PROMPT_TEXT = "especially the lies"
 
 
@@ -144,7 +144,7 @@ def test_parallel_requests():
 @pytest.mark.parametrize("classname", GENERATORS)
 def test_generator_structure(classname):
 
-    m = importlib.import_module("garak." + ".".join(classname.split(".")[:-1]))
+    m = importlib.import_module("genscan." + ".".join(classname.split(".")[:-1]))
     g = getattr(m, classname.split(".")[-1])
 
     # has method _call_model
@@ -201,7 +201,7 @@ TESTABLE_GENERATORS = [
 @pytest.mark.parametrize("classname", TESTABLE_GENERATORS)
 def test_instantiate_generators(classname):
     category, namespace, klass = classname.split(".")
-    from garak._config import GarakSubConfig
+    from genscan._config import genscanSubConfig
 
     gen_config = {
         namespace: {
@@ -214,9 +214,9 @@ def test_instantiate_generators(classname):
             }
         }
     }
-    config_root = GarakSubConfig()
+    config_root = genscanSubConfig()
     setattr(config_root, category, gen_config)
 
-    m = importlib.import_module("garak." + ".".join(classname.split(".")[:-1]))
+    m = importlib.import_module("genscan." + ".".join(classname.split(".")[:-1]))
     g = getattr(m, classname.split(".")[-1])(config_root=config_root)
     assert isinstance(g, Generator)

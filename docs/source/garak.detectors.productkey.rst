@@ -1,7 +1,7 @@
-garak.detectors.productkey
+genscan.detectors.productkey
 ==========================
 
-.. automodule:: garak.detectors.productkey
+.. automodule:: genscan.detectors.productkey
    :members:
    :undoc-members:
    :show-inheritance:   

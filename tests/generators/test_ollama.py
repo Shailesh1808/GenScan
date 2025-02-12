@@ -2,7 +2,7 @@ import pytest
 import ollama
 import respx
 import httpx
-from garak.generators.ollama import OllamaGeneratorChat, OllamaGenerator
+from genscan.generators.ollama import OllamaGeneratorChat, OllamaGenerator
 
 PINGED_OLLAMA_SERVER = False  # Avoid calling the server multiple times if it is not running
 OLLAMA_SERVER_UP = False

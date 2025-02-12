@@ -5,23 +5,23 @@ Calibration
 Are my scores good?
 ^^^^^^^^^^^^^^^^^^^
 
-Garak scores are interpreted compared to the state of the art. 
+genscan scores are interpreted compared to the state of the art. 
 Using a "bag" of models and the results across those, we calibrate scores based on how those models perform on various probes and detectors.
-The scores we get from the surveyed models are used to get a distribution of possible garak scores.
+The scores we get from the surveyed models are used to get a distribution of possible genscan scores.
 When surveying a target model, its pass rate is compared to the average and variation we see across state of the art models in order to estimate how well the target model is doing.
 
 What models are compared against?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We look for the following things when composing the model bag for calibrating garak results:
+We look for the following things when composing the model bag for calibrating genscan results:
 
 * **Quantity** - There should be enough models in the bag to get usable results, and few enough to make running the experiments tractable
-* **Recency** - Older models can give uncompetitive results, so we want recent ones. On the other hand, updating the bag very frequently makes it hard to compare results between garak runs.
+* **Recency** - Older models can give uncompetitive results, so we want recent ones. On the other hand, updating the bag very frequently makes it hard to compare results between genscan runs.
 * **Size** - We want models over a variety of sizes. Size is measured in parameter count, regardless of quantisation, and we look for models with 1-10B, 11-99B, and 100B+ parameters.
 * **Provider** - No more than two models in the bag from the same provider
 * **Openness** - Open weights models are easiest for us to survey, so we prefer to use those
 
-One can read about which models are in the current calibration, and what configuration was used, from the source in `bag.md <https://github.com/NVIDIA/garak/blob/main/garak/data/calibration/bag.md>`_.
+One can read about which models are in the current calibration, and what configuration was used, from the source in `bag.md <https://github.com/NVIDIA/genscan/blob/main/genscan/data/calibration/bag.md>`_.
 
 Z-scores
 ^^^^^^^^

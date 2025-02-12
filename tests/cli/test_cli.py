@@ -2,7 +2,7 @@ import re
 import pytest
 import os
 
-from garak import __app__, __description__, __version__, cli, _config
+from genscan import __app__, __description__, __version__, cli, _config
 
 ANSI_ESCAPE = re.compile(r"\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])")
 
@@ -11,7 +11,7 @@ def test_version_command(capsys):
     cli.main(["--version"])
     result = capsys.readouterr()
     output = ANSI_ESCAPE.sub("", result.out)
-    assert "garak" in output
+    assert "genscan" in output
     assert f"v{__version__}" in output
     assert len(output.strip().split("\n")) == 1
 
@@ -62,7 +62,7 @@ def test_run_all_active_probes(capsys):
     )
     result = capsys.readouterr()
     last_line = result.out.strip().split("\n")[-1]
-    assert re.match("^✔️  garak run complete in [0-9]+\\.[0-9]+s$", last_line)
+    assert re.match("^✔️  genscan run complete in [0-9]+\\.[0-9]+s$", last_line)
 
 
 def test_run_all_active_detectors(capsys):
@@ -82,4 +82,4 @@ def test_run_all_active_detectors(capsys):
     )
     result = capsys.readouterr()
     last_line = result.out.strip().split("\n")[-1]
-    assert re.match("^✔️  garak run complete in [0-9]+\\.[0-9]+s$", last_line)
+    assert re.match("^✔️  genscan run complete in [0-9]+\\.[0-9]+s$", last_line)

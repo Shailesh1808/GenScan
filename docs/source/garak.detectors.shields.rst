@@ -1,7 +1,7 @@
-garak.detectors.shields
+genscan.detectors.shields
 ========================
 
-.. automodule:: garak.detectors.shields
+.. automodule:: genscan.detectors.shields
    :members:
    :undoc-members:
    :show-inheritance:   

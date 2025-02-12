@@ -1,7 +1,7 @@
-garak.generators.rasa
+genscan.generators.rasa
 =====================
 
-.. automodule:: garak.generators.rasa
+.. automodule:: genscan.generators.rasa
    :members:
    :undoc-members:
    :show-inheritance:   

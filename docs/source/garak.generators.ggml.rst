@@ -1,7 +1,7 @@
-garak.generators.ggml
+genscan.generators.ggml
 =====================
 
-.. automodule:: garak.generators.ggml
+.. automodule:: genscan.generators.ggml
    :members:
    :undoc-members:
    :show-inheritance:   

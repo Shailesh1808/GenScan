@@ -1,7 +1,7 @@
-garak.command
+genscan.command
 =============
 
-.. automodule:: garak.command
+.. automodule:: genscan.command
    :members:
    :undoc-members:
    :show-inheritance:   

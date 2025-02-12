@@ -1,7 +1,7 @@
-garak.generators.langchain
+genscan.generators.langchain
 ==========================
 
-.. automodule:: garak.generators.langchain
+.. automodule:: genscan.generators.langchain
    :members:
    :undoc-members:
    :show-inheritance:   

@@ -1,7 +1,7 @@
-garak.probes.fileformats
+genscan.probes.fileformats
 ========================
 
-.. automodule:: garak.probes.fileformats
+.. automodule:: genscan.probes.fileformats
    :members:
    :undoc-members:
    :show-inheritance:   

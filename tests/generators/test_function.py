@@ -1,7 +1,7 @@
 import pytest
 import re
 
-from garak import cli
+from genscan import cli
 
 
 def passed_function(prompt: str, **kwargs):
@@ -21,4 +21,4 @@ def test_function_single(capsys):
     cli.main(args)
     result = capsys.readouterr()
     last_line = result.out.strip().split("\n")[-1]
-    assert re.match("^✔️  garak run complete in [0-9]+\\.[0-9]+s$", last_line)
+    assert re.match("^✔️  genscan run complete in [0-9]+\\.[0-9]+s$", last_line)

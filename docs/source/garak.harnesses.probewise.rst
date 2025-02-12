@@ -1,7 +1,7 @@
-garak.harnesses.probewise
+genscan.harnesses.probewise
 =========================
 
-.. automodule:: garak.harnesses.probewise
+.. automodule:: genscan.harnesses.probewise
    :members:
    :undoc-members:
    :show-inheritance:   

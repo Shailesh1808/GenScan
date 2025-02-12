@@ -1,10 +1,10 @@
-CLI reference for garak
+CLI reference for genscan
 =======================
 
 ::
 
-  garak LLM vulnerability scanner v0.10.2 ( https://github.com/NVIDIA/garak ) at 2025-01-30T13:10:51.281653
-  usage: python -m garak [-h] [--verbose] [--report_prefix REPORT_PREFIX]
+  genscan LLM vulnerability scanner v0.10.2 ( https://github.com/NVIDIA/genscan ) at 2025-01-30T13:10:51.281653
+  usage: python -m genscan [-h] [--verbose] [--report_prefix REPORT_PREFIX]
                          [--narrow_output]
                          [--parallel_requests PARALLEL_REQUESTS]
                          [--parallel_attempts PARALLEL_ATTEMPTS]
@@ -105,13 +105,13 @@ CLI reference for garak
     --list_config         print active config info (and don't scan)
     --version, -V         print version info & exit
     --report REPORT, -r REPORT
-                          process garak report into a list of AVID reports
+                          process genscan report into a list of AVID reports
     --interactive, -I     Enter interactive probing mode
     --generate_autodan    generate AutoDAN prompts; requires --prompt_options
                           with JSON containing a prompt and target
-    --interactive.py      Launch garak in interactive.py mode
+    --interactive.py      Launch genscan in interactive.py mode
     --fix                 Update provided configuration with fixer migrations;
                           requires one of --config / --*_option_file, /
                           --*_options
   
-  See https://github.com/NVIDIA/garak
+  See https://github.com/NVIDIA/genscan

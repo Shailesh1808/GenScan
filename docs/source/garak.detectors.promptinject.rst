@@ -1,7 +1,7 @@
-garak.detectors.promptinject
+genscan.detectors.promptinject
 ============================
 
-.. automodule:: garak.detectors.promptinject
+.. automodule:: genscan.detectors.promptinject
    :members:
    :undoc-members:
    :show-inheritance:   

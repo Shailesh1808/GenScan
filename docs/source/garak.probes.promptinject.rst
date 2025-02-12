@@ -1,7 +1,7 @@
-garak.probes.promptinject
+genscan.probes.promptinject
 =========================
 
-.. automodule:: garak.probes.promptinject
+.. automodule:: genscan.probes.promptinject
    :members:
    :undoc-members:
    :show-inheritance:   

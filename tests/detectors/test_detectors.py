@@ -7,14 +7,14 @@ import pytest
 import re
 import types
 
-from garak import _plugins
-from garak.attempt import Attempt
-from garak.configurable import Configurable
-from garak.detectors.base import Detector
-from garak.exception import APIKeyMissingError
-import garak.detectors.base
+from genscan import _plugins
+from genscan.attempt import Attempt
+from genscan.configurable import Configurable
+from genscan.detectors.base import Detector
+from genscan.exception import APIKeyMissingError
+import genscan.detectors.base
 
-DEFAULT_GENERATOR_NAME = "garak test"
+DEFAULT_GENERATOR_NAME = "genscan test"
 DEFAULT_PROMPT_TEXT = "especially the lies"
 
 
@@ -33,7 +33,7 @@ BCP_LENIENT_RE = re.compile(r"[a-z]{2}([\-A-Za-z]*)")
 @pytest.mark.parametrize("classname", DETECTORS)
 def test_detector_structure(classname):
 
-    m = importlib.import_module("garak." + ".".join(classname.split(".")[:-1]))
+    m = importlib.import_module("genscan." + ".".join(classname.split(".")[:-1]))
     d = getattr(m, classname.split(".")[-1])
 
     # has method detect
@@ -55,7 +55,7 @@ def test_detector_structure(classname):
 @pytest.mark.parametrize("classname", DETECTORS)
 def test_detector_detect(classname):
 
-    m = importlib.import_module("garak." + ".".join(classname.split(".")[:-1]))
+    m = importlib.import_module("genscan." + ".".join(classname.split(".")[:-1]))
     dc = getattr(m, classname.split(".")[-1])
     try:
         di = dc.__new__(dc)
@@ -101,7 +101,7 @@ def test_detector_detect(classname):
     ), "we've supplied four outputs to the attempt, should have four logged"
     results = di.detect(a)
     if not isinstance(
-        di, garak.detectors.base.FileDetector
+        di, genscan.detectors.base.FileDetector
     ):  # this returns nothing - remove when Nones are OK in detector output
         assert len(list(results)) in (
             3,
@@ -115,7 +115,7 @@ def test_detector_metadata(classname):
         return
     # instantiation can fail e.g. due to missing API keys
     # luckily this info is descriptive rather than behaviour-altering, so we don't need an instance
-    m = importlib.import_module("garak." + ".".join(classname.split(".")[:-1]))
+    m = importlib.import_module("genscan." + ".".join(classname.split(".")[:-1]))
     dc = getattr(m, classname.split(".")[-1])
     d = dc.__new__(dc)
     assert isinstance(

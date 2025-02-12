@@ -1,7 +1,7 @@
-garak.generators.nim
+genscan.generators.nim
 ====================
 
-.. automodule:: garak.generators.nim
+.. automodule:: genscan.generators.nim
    :members:
    :undoc-members:
    :show-inheritance:   

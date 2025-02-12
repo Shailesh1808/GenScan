@@ -1,7 +1,7 @@
-garak.detectors.encoding
+genscan.detectors.encoding
 ========================
 
-.. automodule:: garak.detectors.encoding
+.. automodule:: genscan.detectors.encoding
    :members:
    :undoc-members:
    :show-inheritance:   

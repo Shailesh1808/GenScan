@@ -3,7 +3,7 @@ requires      = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "garak"
+name = "genscan"
 version = "0.10.2.post1"
 authors = [
   { name = "Leon Derczynski", email="lderczynski@nvidia.com" },
@@ -109,17 +109,17 @@ calibration = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/NVIDIA/garak"
-"Bug Tracker" = "https://github.com/NVIDIA/garak/issues"
+"Homepage" = "https://github.com/NVIDIA/genscan"
+"Bug Tracker" = "https://github.com/NVIDIA/genscan/issues"
 
 [project.scripts]
-garak = "garak.__main__:main"
+genscan = "genscan.__main__:main"
 
 [tool.setuptools]
-packages = ["garak"]
+packages = ["genscan"]
 
 [tool.setuptools.package-data]
-"garak.resources" = ["*"]
+"genscan.resources" = ["*"]
 
 [tool.black]
 line-length = 88
@@ -129,9 +129,9 @@ include = '\.pyi?$'
 [tool.pytest.ini_options]
 filterwarnings = [
     "ignore",
-    "default:::garak",
+    "default:::genscan",
 ]
 
 [tool.coverage.run]
-source = ["./garak"]
+source = ["./genscan"]
 omit = ["tests/*"]

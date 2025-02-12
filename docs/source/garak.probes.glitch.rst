@@ -1,7 +1,7 @@
-garak.probes.glitch
+genscan.probes.glitch
 ===================
 
-.. automodule:: garak.probes.glitch
+.. automodule:: genscan.probes.glitch
    :members:
    :undoc-members:
    :show-inheritance:   

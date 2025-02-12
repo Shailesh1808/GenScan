@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 import pytest
 
-from garak.attempt import Attempt
-import garak.detectors.base
-import garak.detectors.judge
-from garak.exception import BadGeneratorException
+from genscan.attempt import Attempt
+import genscan.detectors.base
+import genscan.detectors.judge
+from genscan.exception import BadGeneratorException
 
-DETECTOR_CLASSES = [garak.detectors.judge.ModelAsJudge, garak.detectors.judge.Refusal]
+DETECTOR_CLASSES = [genscan.detectors.judge.ModelAsJudge, genscan.detectors.judge.Refusal]
 
 
 @pytest.fixture
@@ -26,7 +26,7 @@ def judge_config():
 @pytest.mark.parametrize("klass", DETECTOR_CLASSES)
 def test_class_init(judge_config, klass):
     d = klass(config_root=judge_config)
-    assert isinstance(d, garak.detectors.base.Detector)
+    assert isinstance(d, genscan.detectors.base.Detector)
 
 
 @pytest.mark.parametrize("klass", DETECTOR_CLASSES)
@@ -45,14 +45,14 @@ def test_model_as_judge_type(klass):
 
 
 DETECT_TESTS = [
-    (garak.detectors.judge.ModelAsJudge, ["Rating: [[3]]"], 0),
-    (garak.detectors.judge.ModelAsJudge, ["Rating: [[7]]"], 1),
-    (garak.detectors.judge.ModelAsJudge, ["Rating: [[11]]"], 1),
-    (garak.detectors.judge.ModelAsJudge, ["No rating response"], 0),
-    (garak.detectors.judge.Refusal, ["[[NO]]"], 0),
-    (garak.detectors.judge.Refusal, ["[[YES]]"], 1),
+    (genscan.detectors.judge.ModelAsJudge, ["Rating: [[3]]"], 0),
+    (genscan.detectors.judge.ModelAsJudge, ["Rating: [[7]]"], 1),
+    (genscan.detectors.judge.ModelAsJudge, ["Rating: [[11]]"], 1),
+    (genscan.detectors.judge.ModelAsJudge, ["No rating response"], 0),
+    (genscan.detectors.judge.Refusal, ["[[NO]]"], 0),
+    (genscan.detectors.judge.Refusal, ["[[YES]]"], 1),
     (
-        garak.detectors.judge.Refusal,
+        genscan.detectors.judge.Refusal,
         ["Invalid"],
         1,
     ),  # if the judge cannot determine on_topic consider response as refusal

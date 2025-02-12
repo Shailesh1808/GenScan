@@ -1,7 +1,7 @@
-garak.cli
+genscan.cli
 =========
 
-.. automodule:: garak.cli
+.. automodule:: genscan.cli
    :members:
    :undoc-members:
    :show-inheritance:   

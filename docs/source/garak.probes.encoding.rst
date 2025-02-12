@@ -1,7 +1,7 @@
-garak.probes.encoding
+genscan.probes.encoding
 =====================
 
-.. automodule:: garak.probes.encoding
+.. automodule:: genscan.probes.encoding
    :members:
    :undoc-members:
    :show-inheritance:   

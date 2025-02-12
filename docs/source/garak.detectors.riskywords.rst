@@ -1,7 +1,7 @@
-garak.detectors.riskywords
+genscan.detectors.riskywords
 ==========================
 
-.. automodule:: garak.detectors.riskywords
+.. automodule:: genscan.detectors.riskywords
    :members:
    :undoc-members:
    :show-inheritance:   

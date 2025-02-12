@@ -1,10 +1,10 @@
-garak.harnesses
+genscan.harnesses
 ===============
 
 .. toctree::
    :maxdepth: 2
 
-   garak.harnesses
-   garak.harnesses.base
-   garak.harnesses.probewise
-   garak.harnesses.pxd
+   genscan.harnesses
+   genscan.harnesses.base
+   genscan.harnesses.probewise
+   genscan.harnesses.pxd

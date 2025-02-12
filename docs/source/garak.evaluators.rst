@@ -1,7 +1,7 @@
-garak.evaluators
+genscan.evaluators
 ================
 
-.. automodule:: garak.evaluators
+.. automodule:: genscan.evaluators
    :members:
    :undoc-members:
    :show-inheritance:   

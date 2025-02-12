@@ -3,37 +3,37 @@
 
 import os
 
-import garak
-import garak._config
-import garak._plugins
-import garak.attempt
-import garak.cli
-import garak.probes.leakreplay
+import genscan
+import genscan._config
+import genscan._plugins
+import genscan.attempt
+import genscan.cli
+import genscan.probes.leakreplay
 
 
 def test_leakreplay_hitlog():
 
     args = "-m test.Blank -p leakreplay -d always.Fail".split()
-    garak.cli.main(args)
+    genscan.cli.main(args)
 
 
 def test_leakreplay_output_count():
     generations = 1
-    garak._config.load_base_config()
-    garak._config.transient.reportfile = open(os.devnull, "w+")
-    garak._config.plugins.probes["leakreplay"]["generations"] = generations
-    a = garak.attempt.Attempt(prompt="test")
-    p = garak._plugins.load_plugin(
-        "probes.leakreplay.LiteratureCloze80", config_root=garak._config
+    genscan._config.load_base_config()
+    genscan._config.transient.reportfile = open(os.devnull, "w+")
+    genscan._config.plugins.probes["leakreplay"]["generations"] = generations
+    a = genscan.attempt.Attempt(prompt="test")
+    p = genscan._plugins.load_plugin(
+        "probes.leakreplay.LiteratureCloze80", config_root=genscan._config
     )
-    g = garak._plugins.load_plugin("generators.test.Blank", config_root=garak._config)
+    g = genscan._plugins.load_plugin("generators.test.Blank", config_root=genscan._config)
     p.generator = g
     results = p._execute_all([a])
     assert len(a.all_outputs) == generations
 
 
 def test_leakreplay_handle_incomplete_attempt():
-    p = garak.probes.leakreplay.LiteratureCloze80()
-    a = garak.attempt.Attempt(prompt="IS THIS BROKEN")
+    p = genscan.probes.leakreplay.LiteratureCloze80()
+    a = genscan.attempt.Attempt(prompt="IS THIS BROKEN")
     a.outputs = ["", None]
     p._postprocess_hook(a)

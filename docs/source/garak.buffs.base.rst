@@ -1,7 +1,7 @@
-garak.buffs.base
+genscan.buffs.base
 ================
 
-.. automodule:: garak.buffs.base
+.. automodule:: genscan.buffs.base
    :members:
    :undoc-members:
    :show-inheritance:   

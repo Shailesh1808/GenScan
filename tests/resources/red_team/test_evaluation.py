@@ -3,9 +3,9 @@
 
 import pytest
 
-from garak.attempt import Attempt
-from garak.generators.test import Lipsum
-from garak.resources.red_team.evaluation import EvaluationJudge
+from genscan.attempt import Attempt
+from genscan.generators.test import Lipsum
+from genscan.resources.red_team.evaluation import EvaluationJudge
 
 
 class TestJudge(EvaluationJudge):

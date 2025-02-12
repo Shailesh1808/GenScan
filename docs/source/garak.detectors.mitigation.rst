@@ -1,7 +1,7 @@
-garak.detectors.mitigation
+genscan.detectors.mitigation
 ==========================
 
-.. automodule:: garak.detectors.mitigation
+.. automodule:: genscan.detectors.mitigation
    :members:
    :undoc-members:
    :show-inheritance:   

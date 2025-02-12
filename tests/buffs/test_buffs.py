@@ -4,10 +4,10 @@
 import pytest
 import importlib
 
-from garak import _plugins
-from garak import attempt
-from garak.exception import GarakException
-import garak.buffs.base
+from genscan import _plugins
+from genscan import attempt
+from genscan.exception import genscanException
+import genscan.buffs.base
 
 BUFFS = [classname for (classname, active) in _plugins.enumerate_plugins("buffs")]
 
@@ -15,7 +15,7 @@ BUFFS = [classname for (classname, active) in _plugins.enumerate_plugins("buffs"
 @pytest.mark.parametrize("classname", BUFFS)
 def test_buff_structure(classname):
 
-    m = importlib.import_module("garak." + ".".join(classname.split(".")[:-1]))
+    m = importlib.import_module("genscan." + ".".join(classname.split(".")[:-1]))
     c = getattr(m, classname.split(".")[-1])
 
     # any parameter that has a default must be supported
@@ -32,9 +32,9 @@ def test_buff_structure(classname):
 def test_buff_load_and_transform(klassname):
     try:
         b = _plugins.load_plugin(klassname)
-    except GarakException:
+    except genscanException:
         pytest.skip()
-    assert isinstance(b, garak.buffs.base.Buff)
+    assert isinstance(b, genscan.buffs.base.Buff)
     a = attempt.Attempt()
     a.prompt = "I'm just a plain and simple tailor"
     buffed_a = list(b.transform(a))  # unroll the generator

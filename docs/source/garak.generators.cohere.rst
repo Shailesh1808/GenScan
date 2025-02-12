@@ -1,7 +1,7 @@
-garak.generators.cohere
+genscan.generators.cohere
 =======================
 
-.. automodule:: garak.generators.cohere
+.. automodule:: genscan.generators.cohere
    :members:
    :undoc-members:
    :show-inheritance:   

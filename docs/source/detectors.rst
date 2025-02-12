@@ -1,34 +1,34 @@
-garak.detectors
+genscan.detectors
 ===============
 
 .. toctree::
    :maxdepth: 2
 
-   garak.detectors
-   garak.detectors.base
-   garak.detectors.always
-   garak.detectors.ansiescape
-   garak.detectors.continuation
-   garak.detectors.dan
-   garak.detectors.divergence
-   garak.detectors.encoding
-   garak.detectors.fileformats
-   garak.detectors.goodside
-   garak.detectors.judge
-   garak.detectors.knownbadsignatures
-   garak.detectors.leakreplay
-   garak.detectors.lmrc
-   garak.detectors.malwaregen
-   garak.detectors.misleading
-   garak.detectors.mitigation
-   garak.detectors.packagehallucination
-   garak.detectors.perspective
-   garak.detectors.promptinject
-   garak.detectors.productkey
-   garak.detectors.riskywords
-   garak.detectors.shields
-   garak.detectors.snowball
-   garak.detectors.specialwords
-   garak.detectors.toxicity
-   garak.detectors.xss
-   garak.detectors.visual_jailbreak
+   genscan.detectors
+   genscan.detectors.base
+   genscan.detectors.always
+   genscan.detectors.ansiescape
+   genscan.detectors.continuation
+   genscan.detectors.dan
+   genscan.detectors.divergence
+   genscan.detectors.encoding
+   genscan.detectors.fileformats
+   genscan.detectors.goodside
+   genscan.detectors.judge
+   genscan.detectors.knownbadsignatures
+   genscan.detectors.leakreplay
+   genscan.detectors.lmrc
+   genscan.detectors.malwaregen
+   genscan.detectors.misleading
+   genscan.detectors.mitigation
+   genscan.detectors.packagehallucination
+   genscan.detectors.perspective
+   genscan.detectors.promptinject
+   genscan.detectors.productkey
+   genscan.detectors.riskywords
+   genscan.detectors.shields
+   genscan.detectors.snowball
+   genscan.detectors.specialwords
+   genscan.detectors.toxicity
+   genscan.detectors.xss
+   genscan.detectors.visual_jailbreak

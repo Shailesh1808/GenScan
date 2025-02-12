@@ -1,7 +1,7 @@
-garak.buffs.paraphrase
+genscan.buffs.paraphrase
 ======================
 
-.. automodule:: garak.buffs.paraphrase
+.. automodule:: genscan.buffs.paraphrase
    :members:
    :undoc-members:
    :show-inheritance:   

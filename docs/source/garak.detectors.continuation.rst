@@ -1,7 +1,7 @@
-garak.detectors.continuation
+genscan.detectors.continuation
 ============================
 
-.. automodule:: garak.detectors.continuation
+.. automodule:: genscan.detectors.continuation
    :members:
    :undoc-members:
    :show-inheritance:   

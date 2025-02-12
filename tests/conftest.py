@@ -1,6 +1,6 @@
 import pytest
 import os
-from garak import _config, _plugins
+from genscan import _config, _plugins
 
 # force a local cache file to exist when this top level import is loaded
 if not os.path.isfile(_plugins.PluginCache._user_plugin_cache_filename):

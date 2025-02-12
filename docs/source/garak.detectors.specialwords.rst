@@ -1,7 +1,7 @@
-garak.detectors.specialwords
+genscan.detectors.specialwords
 ============================
 
-.. automodule:: garak.detectors.specialwords
+.. automodule:: genscan.detectors.specialwords
    :members:
    :undoc-members:
    :show-inheritance:   

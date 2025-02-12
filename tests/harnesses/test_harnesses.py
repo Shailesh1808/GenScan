@@ -4,9 +4,9 @@
 import pytest
 import importlib
 
-from garak import _plugins
+from genscan import _plugins
 
-import garak.harnesses.base
+import genscan.harnesses.base
 
 HARNESSES = [
     classname for (classname, active) in _plugins.enumerate_plugins("harnesses")
@@ -16,7 +16,7 @@ HARNESSES = [
 @pytest.mark.parametrize("classname", HARNESSES)
 def test_buff_structure(classname):
 
-    m = importlib.import_module("garak." + ".".join(classname.split(".")[:-1]))
+    m = importlib.import_module("genscan." + ".".join(classname.split(".")[:-1]))
     c = getattr(m, classname.split(".")[-1])
 
     # any parameter that has a default must be supported
@@ -36,14 +36,14 @@ def test_harness_modality_match():
     tvi = {"text", "vision", "image"}
 
     # probe, generator
-    assert garak.harnesses.base._modality_match(t, t, True) is True
-    assert garak.harnesses.base._modality_match(ti, ti, True) is True
-    assert garak.harnesses.base._modality_match(t, tv, True) is False
-    assert garak.harnesses.base._modality_match(ti, t, True) is False
+    assert genscan.harnesses.base._modality_match(t, t, True) is True
+    assert genscan.harnesses.base._modality_match(ti, ti, True) is True
+    assert genscan.harnesses.base._modality_match(t, tv, True) is False
+    assert genscan.harnesses.base._modality_match(ti, t, True) is False
 
     # when strict is false, generator must support all probe modalities, but can also support more
-    assert garak.harnesses.base._modality_match(t, t, False) is True
-    assert garak.harnesses.base._modality_match(ti, t, False) is False
-    assert garak.harnesses.base._modality_match(t, tvi, False) is True
-    assert garak.harnesses.base._modality_match(ti, tvi, False) is True
-    assert garak.harnesses.base._modality_match(t, ti, False) is True
+    assert genscan.harnesses.base._modality_match(t, t, False) is True
+    assert genscan.harnesses.base._modality_match(ti, t, False) is False
+    assert genscan.harnesses.base._modality_match(t, tvi, False) is True
+    assert genscan.harnesses.base._modality_match(ti, tvi, False) is True
+    assert genscan.harnesses.base._modality_match(t, ti, False) is True

@@ -1,7 +1,7 @@
-garak.detectors.divergence
+genscan.detectors.divergence
 ==========================
 
-.. automodule:: garak.detectors.divergence
+.. automodule:: genscan.detectors.divergence
    :members:
    :undoc-members:
    :show-inheritance:   

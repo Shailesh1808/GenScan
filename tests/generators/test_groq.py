@@ -1,7 +1,7 @@
 import os
 import pytest
 
-from garak.generators.groq import GroqChat
+from genscan.generators.groq import GroqChat
 
 
 def test_groq_invalid_multiple_completions():

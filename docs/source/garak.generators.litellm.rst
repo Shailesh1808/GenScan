@@ -1,7 +1,7 @@
-garak.generators.litellm
+genscan.generators.litellm
 ========================
 
-.. automodule:: garak.generators.litellm
+.. automodule:: genscan.generators.litellm
    :members:
    :undoc-members:
    :show-inheritance:   

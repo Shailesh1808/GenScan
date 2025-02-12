@@ -1,4 +1,4 @@
-garak.probes.packagehallucination
+genscan.probes.packagehallucination
 =================================
 
 Check for package hallucination vulnerabilities. From `<https://vulcan.io/blog/ai-hallucinations-package-risk>`_:
@@ -7,7 +7,7 @@ Check for package hallucination vulnerabilities. From `<https://vulcan.io/blog/a
 
    When the attacker finds a recommendation for an unpublished package, they can publish their own malicious package in its place. The next time a user asks a similar question they may receive a recommendation from ChatGPT to use the now-existing malicious package. We recreated this scenario in the proof of concept below using ChatGPT 3.5.
 
-.. automodule:: garak.probes.packagehallucination
+.. automodule:: genscan.probes.packagehallucination
    :members:
    :undoc-members:
    :show-inheritance:   

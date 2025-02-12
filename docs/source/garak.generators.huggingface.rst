@@ -1,7 +1,7 @@
-garak.generators.huggingface
+genscan.generators.huggingface
 ============================
 
-.. automodule:: garak.generators.huggingface
+.. automodule:: genscan.generators.huggingface
    :members:
    :undoc-members:
    :show-inheritance:   

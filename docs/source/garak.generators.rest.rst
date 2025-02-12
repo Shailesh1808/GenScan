@@ -1,4 +1,4 @@
-garak.generators.rest
+genscan.generators.rest
 =====================
 
 Flexible connector for REST-based APIs.
@@ -56,15 +56,15 @@ NB. ``response_json_field`` can also be a JSONPath, for JSON responses where
 the target text is not in a top level field. It is treated as a JSONPath
 when ``response_json_field`` starts with ``$``.
 
-To use this specification with garak, you can either pass the JSON as a
+To use this specification with genscan, you can either pass the JSON as a
 strong option on the command line via ``--generator_options``, or save the
 JSON definition into a file and pass the filename to
 ``--generator_option_file`` / ``-G``. For example, if we save the above
-JSON into ``example_service.json``, we can invoke garak as: 
+JSON into ``example_service.json``, we can invoke genscan as: 
 
 .. code-block:: 
 
-   garak --model_type rest -G example_service.json
+   genscan --model_type rest -G example_service.json
 
 This will load up the default ``RestGenerator`` and use the details in the
 JSON file to connect to the LLM endpoint.
@@ -74,7 +74,7 @@ from RestGenerator.
 
 ----
 
-.. automodule:: garak.generators.rest
+.. automodule:: genscan.generators.rest
    :members:
    :undoc-members:
    :show-inheritance:   

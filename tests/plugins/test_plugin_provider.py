@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import pytest
-from garak._plugins import PluginProvider
-from garak import _config
-from garak.probes.test import Blank, Test
+from genscan._plugins import PluginProvider
+from genscan import _config
+from genscan.probes.test import Blank, Test
 
 
 def test_plugin_provider_instance_not_found():

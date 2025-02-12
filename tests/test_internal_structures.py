@@ -7,11 +7,11 @@ import tempfile
 
 import pytest
 
-import garak._config
-import garak._plugins
-import garak.attempt
-import garak.evaluators.base
-import garak.generators.test
+import genscan._config
+import genscan._plugins
+import genscan.attempt
+import genscan.evaluators.base
+import genscan.generators.test
 
 # probes should be able to return a generator of attempts
 # -> probes.base.Probe._execute_all (1) should be able to consume a generator of attempts
@@ -23,21 +23,21 @@ import garak.generators.test
 
 @pytest.fixture(autouse=True)
 def _config_loaded():
-    importlib.reload(garak._config)
-    garak._config.load_base_config()
-    garak._config.plugins.probes["test"]["generations"] = 1
+    importlib.reload(genscan._config)
+    genscan._config.load_base_config()
+    genscan._config.plugins.probes["test"]["generations"] = 1
     temp_report_file = tempfile.NamedTemporaryFile(mode="w+")
-    garak._config.transient.reportfile = temp_report_file
-    garak._config.transient.report_filename = temp_report_file.name
+    genscan._config.transient.reportfile = temp_report_file
+    genscan._config.transient.report_filename = temp_report_file.name
     yield
     temp_report_file.close()
 
 
 def test_generator_consume_attempt_generator():
     count = 5
-    attempts = (garak.attempt.Attempt(prompt=str(i)) for i in range(count))
-    p = garak._plugins.load_plugin("probes.test.Blank")
-    g = garak._plugins.load_plugin("generators.test.Blank")
+    attempts = (genscan.attempt.Attempt(prompt=str(i)) for i in range(count))
+    p = genscan._plugins.load_plugin("probes.test.Blank")
+    g = genscan._plugins.load_plugin("generators.test.Blank")
     p.generator = g
     results = p._execute_all(attempts)
 
@@ -45,7 +45,7 @@ def test_generator_consume_attempt_generator():
     result_len = 0
     for _attempt in results:
         assert isinstance(
-            _attempt, garak.attempt.Attempt
+            _attempt, genscan.attempt.Attempt
         ), "_execute_all should return attempts"
         result_len += 1
     assert (
@@ -54,7 +54,7 @@ def test_generator_consume_attempt_generator():
 
 
 def test_attempt_outputs_can_consume_generator():
-    a = garak.attempt.Attempt(prompt="fish")
+    a = genscan.attempt.Attempt(prompt="fish")
     count = 5
     str_iter = ("abc" for _ in range(count))
     a.outputs = str_iter

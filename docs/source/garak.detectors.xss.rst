@@ -1,7 +1,7 @@
-garak.detectors.xss
+genscan.detectors.xss
 ===================
 
-.. automodule:: garak.detectors.xss
+.. automodule:: genscan.detectors.xss
    :members:
    :undoc-members:
    :show-inheritance:   

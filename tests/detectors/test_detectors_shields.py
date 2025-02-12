@@ -3,8 +3,8 @@
 
 import pytest
 
-from garak.attempt import Attempt
-from garak.detectors.shields import Up, Down
+from genscan.attempt import Attempt
+from genscan.detectors.shields import Up, Down
 
 @pytest.fixture
 def up_detector():

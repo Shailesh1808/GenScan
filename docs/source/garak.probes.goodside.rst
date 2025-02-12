@@ -1,7 +1,7 @@
-garak.probes.goodside
+genscan.probes.goodside
 =====================
 
-.. automodule:: garak.probes.goodside
+.. automodule:: genscan.probes.goodside
    :members:
    :undoc-members:
    :show-inheritance:   

@@ -1,9 +1,9 @@
 import pytest
 import random
 
-import garak
-from garak import _plugins, _config
-import garak.generators
+import genscan
+from genscan import _plugins, _config
+import genscan.generators
 
 PROBES = [classname for (classname, active) in _plugins.enumerate_plugins("probes")]
 
@@ -38,32 +38,32 @@ def plugin_configuration(classname):
 def test_instantiate_probes(plugin_configuration):
     classname, config_root = plugin_configuration
     g = _plugins.load_plugin(classname, config_root=config_root)
-    assert isinstance(g, garak.probes.base.Probe)
+    assert isinstance(g, genscan.probes.base.Probe)
 
 
 @pytest.mark.parametrize("classname", DETECTORS)
 def test_instantiate_detectors(plugin_configuration):
     classname, config_root = plugin_configuration
     g = _plugins.load_plugin(classname, config_root=config_root)
-    assert isinstance(g, garak.detectors.base.Detector)
+    assert isinstance(g, genscan.detectors.base.Detector)
 
 
 @pytest.mark.parametrize("classname", HARNESSES)
 def test_instantiate_harnesses(plugin_configuration):
     classname, config_root = plugin_configuration
     g = _plugins.load_plugin(classname, config_root=config_root)
-    assert isinstance(g, garak.harnesses.base.Harness)
+    assert isinstance(g, genscan.harnesses.base.Harness)
 
 
 @pytest.mark.parametrize("classname", BUFFS)
 def test_instantiate_buffs(plugin_configuration):
     classname, config_root = plugin_configuration
     g = _plugins.load_plugin(classname, config_root=config_root)
-    assert isinstance(g, garak.buffs.base.Buff)
+    assert isinstance(g, genscan.buffs.base.Buff)
 
 
 @pytest.mark.parametrize("classname", GENERATORS)
 def test_instantiate_generators(plugin_configuration):
     classname, config_root = plugin_configuration
     g = _plugins.load_plugin(classname, config_root=config_root)
-    assert isinstance(g, garak.generators.base.Generator)
+    assert isinstance(g, genscan.generators.base.Generator)

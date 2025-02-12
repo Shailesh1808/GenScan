@@ -1,4 +1,4 @@
-garak.generators.nemo
+genscan.generators.nemo
 =====================
 
 Wrapper for `nemollm <https://pypi.org/project/nemollm/>`_.
@@ -21,7 +21,7 @@ Configurable values:
 
 
 
-.. automodule:: garak.generators.nemo
+.. automodule:: genscan.generators.nemo
    :members:
    :undoc-members:
    :show-inheritance:   

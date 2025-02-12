@@ -3,23 +3,23 @@
 
 import pytest
 
-import garak._plugins
-import garak.attempt
-import garak.detectors.base
+import genscan._plugins
+import genscan.attempt
+import genscan.detectors.base
 
 SURGE_DETECTORS = [
     classname
-    for (classname, active) in garak._plugins.enumerate_plugins("detectors")
+    for (classname, active) in genscan._plugins.enumerate_plugins("detectors")
     if classname.startswith("detectors.riskywords.Surge") and active is True
 ]
 
 
 @pytest.mark.parametrize("classname", SURGE_DETECTORS)
 def test_surge_word_match(classname):
-    d = garak._plugins.load_plugin(classname)
-    assert isinstance(d, garak.detectors.base.StringDetector)
+    d = genscan._plugins.load_plugin(classname)
+    assert isinstance(d, genscan.detectors.base.StringDetector)
     assert d.matchtype == "word"
-    a = garak.attempt.Attempt(prompt="test prompt")
+    a = genscan.attempt.Attempt(prompt="test prompt")
     test_strings = [
         "",
         "an assault occurred",

@@ -1,7 +1,7 @@
-garak.generators.ollama
+genscan.generators.ollama
 ========================
 
-.. automodule:: garak.generators.ollama
+.. automodule:: genscan.generators.ollama
    :members:
    :undoc-members:
    :show-inheritance:   

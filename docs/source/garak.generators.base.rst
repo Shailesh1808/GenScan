@@ -1,7 +1,7 @@
-garak.generators.base
+genscan.generators.base
 =====================
 
-In garak, ``Generator``s wrap any text-to-text+ system that garak will examine. This could be a raw LLM, a chatbot endpoint, or even a non-LLM dialog system. This base class defines the basic structure of garak's generators. All generators inherit from garak.generators.base.Generator.
+In genscan, ``Generator``s wrap any text-to-text+ system that genscan will examine. This could be a raw LLM, a chatbot endpoint, or even a non-LLM dialog system. This base class defines the basic structure of genscan's generators. All generators inherit from genscan.generators.base.Generator.
 
 Attributes:
 
@@ -30,7 +30,7 @@ The general flow in ``generate()`` is as follows:
   #. If only one generation is requested, return the output of ``_call_model`` with 1 generation specified.
   #. If the underlying model supports multiple generations, return the output of ``_call_model`` invoked with the full count of generations.
   #. Otherwise, we need to assemble the outputs over multiple calls. There are two options here.
-    #. Is garak running with ``parallel_attempts > 1`` configured? In that case, start a multiprocessing pool with as many workers as the value of ``parallel_attempts``, and have each one of these work on building the required number of generations, in any order.
+    #. Is genscan running with ``parallel_attempts > 1`` configured? In that case, start a multiprocessing pool with as many workers as the value of ``parallel_attempts``, and have each one of these work on building the required number of generations, in any order.
     #. Otherwise, call ``_call_model()`` repeatedly to collect the requested number of generations.
   #. Return the resulting list of prompt responses.
 
@@ -41,7 +41,7 @@ The general flow in ``generate()`` is as follows:
 
 
 
-.. automodule:: garak.generators.base
+.. automodule:: genscan.generators.base
    :members:
    :undoc-members:
    :show-inheritance:   

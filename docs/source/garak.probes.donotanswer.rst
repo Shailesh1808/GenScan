@@ -1,7 +1,7 @@
-garak.probes.donotanswer
+genscan.probes.donotanswer
 ========================
 
-.. automodule:: garak.probes.donotanswer
+.. automodule:: genscan.probes.donotanswer
    :members:
    :undoc-members:
    :show-inheritance: 

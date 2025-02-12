@@ -1,6 +1,6 @@
 import pytest
 
-from garak.resources import fixer
+from genscan.resources import fixer
 
 BASE_TEST_CONFIG = {"plugins": {"probe_spec": "test.Test"}}
 

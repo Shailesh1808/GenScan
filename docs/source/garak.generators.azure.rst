@@ -1,7 +1,7 @@
-garak.generators.azure
+genscan.generators.azure
 =======================
 
-.. automodule:: garak.generators.azure
+.. automodule:: genscan.generators.azure
    :members:
    :undoc-members:
    :show-inheritance:

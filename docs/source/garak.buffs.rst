@@ -1,9 +1,9 @@
-garak.buffs
+genscan.buffs
 ===========
 
 
 
-.. automodule:: garak.buffs
+.. automodule:: genscan.buffs
    :members:
    :undoc-members:
    :show-inheritance:   

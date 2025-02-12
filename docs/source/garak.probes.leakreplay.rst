@@ -1,7 +1,7 @@
-garak.probes.leakreplay
+genscan.probes.leakreplay
 =======================
 
-.. automodule:: garak.probes.leakreplay
+.. automodule:: genscan.probes.leakreplay
    :members:
    :undoc-members:
    :show-inheritance:   

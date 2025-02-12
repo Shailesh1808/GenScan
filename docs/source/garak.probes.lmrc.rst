@@ -1,7 +1,7 @@
-garak.probes.lmrc
+genscan.probes.lmrc
 =================
 
-.. automodule:: garak.probes.lmrc
+.. automodule:: genscan.probes.lmrc
    :members:
    :undoc-members:
    :show-inheritance:   

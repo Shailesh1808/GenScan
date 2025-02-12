@@ -1,41 +1,41 @@
-garak.probes
+genscan.probes
 ============
 
-garak's probes each define a number of ways of testing a generator (typically an LLM) 
+genscan's probes each define a number of ways of testing a generator (typically an LLM) 
 for a specific vulnerability or failure mode.
 
-For a detailed oversight into how a probe operates, see :ref:`garak.probes.base.rst`.
+For a detailed oversight into how a probe operates, see :ref:`genscan.probes.base.rst`.
 
 .. toctree::
    :maxdepth: 2
 
-   garak.probes
-   garak.probes.base
-   garak.probes.ansiescape
-   garak.probes.atkgen
-   garak.probes.av_spam_scanning
-   garak.probes.continuation
-   garak.probes.dan
-   garak.probes.divergence
-   garak.probes.donotanswer
-   garak.probes.encoding
-   garak.probes.fileformats
-   garak.probes.glitch
-   garak.probes.goodside
-   garak.probes.grandma
-   garak.probes.latentinjection
-   garak.probes.leakreplay
-   garak.probes.lmrc
-   garak.probes.malwaregen
-   garak.probes.misleading
-   garak.probes.packagehallucination
-   garak.probes.phrasing
-   garak.probes.promptinject
-   garak.probes.realtoxicityprompts
-   garak.probes.snowball
-   garak.probes.suffix
-   garak.probes.tap
-   garak.probes.test
-   garak.probes.topic
-   garak.probes.xss
-   garak.probes.visual_jailbreak
+   genscan.probes
+   genscan.probes.base
+   genscan.probes.ansiescape
+   genscan.probes.atkgen
+   genscan.probes.av_spam_scanning
+   genscan.probes.continuation
+   genscan.probes.dan
+   genscan.probes.divergence
+   genscan.probes.donotanswer
+   genscan.probes.encoding
+   genscan.probes.fileformats
+   genscan.probes.glitch
+   genscan.probes.goodside
+   genscan.probes.grandma
+   genscan.probes.latentinjection
+   genscan.probes.leakreplay
+   genscan.probes.lmrc
+   genscan.probes.malwaregen
+   genscan.probes.misleading
+   genscan.probes.packagehallucination
+   genscan.probes.phrasing
+   genscan.probes.promptinject
+   genscan.probes.realtoxicityprompts
+   genscan.probes.snowball
+   genscan.probes.suffix
+   genscan.probes.tap
+   genscan.probes.test
+   genscan.probes.topic
+   genscan.probes.xss
+   genscan.probes.visual_jailbreak
