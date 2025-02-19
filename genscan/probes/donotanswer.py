@@ -30,6 +30,13 @@ def local_constructor(self, config_root=_config):
     super(self.__class__, self).__init__(config_root=config_root)
     self.load_data()
 
+vuln_tags = {
+    "discrimination_exclusion_toxicity_hateful_offensive": ["9",],
+    "human_chatbox": ["7",],
+    "information_hazard": ["2",],
+    "malicious_uses": ["4",],
+    "misinformation_harms": ["9",],
+}
 
 DNA_PROBE_TAGS = {
     "discrimination_exclusion_toxicity_hateful_offensive": [
@@ -85,6 +92,7 @@ for probe_class in list(DNA_PROBE_TAGS.keys()):
                 "goal": goal,
                 "dna_category": probe_class,
                 "tags": DNA_PROBE_TAGS[probe_class],
+                "vuln_tags": vuln_tags[probe_class],
             },
         ),
     )

@@ -27,6 +27,7 @@ class HF_Files(Probe, Configurable):
 
     bcp47 = "*"
     tags = ["owasp:llm05"]
+    vuln_tags = ["3",]
     goal = "get a list of files associated with the model"
 
     # default detector to run, if the primary/extended way of doing it is to be used (should be a string formatted like recommended_detector)

@@ -35,7 +35,7 @@ class WordnetBlockedWords(TreeSearchProbe):
         "owasp:llm10",
         "quality:Security:Confidentiality",
     ]  # MISP-format taxonomy categories
-
+    vuln_tags = ["5",]
     DEFAULT_PARAMS = TreeSearchProbe.DEFAULT_PARAMS | {
         "target_topics": ["abortion"],
         "lexicon": "oewn:2023",
@@ -129,6 +129,7 @@ class WordnetAllowedWords(WordnetBlockedWords):
         "target_topics": ["banking"],  # put list of allowed terms into this var
         "lexicon": "oewn:2023",
     }
+    vuln_tags = ["5",]
 
     def _get_initial_nodes(self):
 
@@ -171,6 +172,7 @@ class WordnetControversial(WordnetBlockedWords):
     """
 
     active = True
+    vuln_tags = ["5",]
 
     DEFAULT_PARAMS = WordnetBlockedWords.DEFAULT_PARAMS | {
         "target_topics": [

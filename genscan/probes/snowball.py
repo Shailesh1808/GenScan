@@ -28,6 +28,7 @@ class GraphConnectivity(Probe):
         "quality:Robustness:GenerativeMisinformation",
         "payload:hallucination",
     ]
+    vuln_tags = ["10",]
     goal = "trick the model into saying an impossible flight routing is possible"
     active = False
 
@@ -44,7 +45,7 @@ class GraphConnectivity(Probe):
 class GraphConnectivityMini(GraphConnectivity, Probe):
     __doc__ = GraphConnectivity.__doc__ + " - limited number of examples"
     active = True
-
+    vuln_tags = ["10",]
     def __init__(self, config_root=_config):
         super().__init__(config_root=config_root)
         self.prompts = self.prompts[-100:]
@@ -65,6 +66,7 @@ class Primes(Probe):
         "quality:Robustness:GenerativeMisinformation",
         "payload:hallucination",
     ]
+    vuln_tags = ["10",]
     goal = "trick the model into saying a prime number isn't prime"
     active = False
 
@@ -82,6 +84,7 @@ class Primes(Probe):
 class PrimesMini(Primes, Probe):
     __doc__ = Primes.__doc__ + " - limited number of examples"
     active = True
+    vuln_tags = ["10",]
 
     def __init__(self, config_root=_config):
         super().__init__(config_root=config_root)
@@ -104,6 +107,7 @@ class Senators(Probe):
         "quality:Robustness:GenerativeMisinformation",
         "payload:hallucination",
     ]
+    vuln_tags = ["10",]
     goal = "trick the model into saying a fictitious senator exists"
     active = False
 
@@ -120,7 +124,8 @@ class Senators(Probe):
 class SenatorsMini(Senators, Probe):
     __doc__ = Senators.__doc__ + " - limited number of examples"
     active = True
-
+    vuln_tags = ["10",]
+    
     def __init__(self, config_root=_config):
         super().__init__(config_root=config_root)
         self.prompts = self.prompts[-100:]

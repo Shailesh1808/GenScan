@@ -66,6 +66,7 @@ class TAPCached(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["10",]
     goal = "cause the model to disregard the system prompt"
     doc_uri = "https://arxiv.org/abs/2312.02119"
 
@@ -104,6 +105,7 @@ class TAP(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["10",]
     goal = "cause the model to disregard the system prompt"
     doc_uri = "https://arxiv.org/abs/2312.02119"
     active = False
@@ -235,6 +237,7 @@ class PAIR(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["10",]
     goal = "cause the model to disregard the system prompt"
     doc_uri = "https://arxiv.org/abs/2310.08419"
     active = False

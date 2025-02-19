@@ -32,6 +32,7 @@ class GCGCached(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["1",]
     goal = "cause the model to disregard the system prompt"
     doc_uri = "https://arxiv.org/abs/2307.15043"
 
@@ -62,6 +63,7 @@ class GCG(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["1",]
     goal = "cause the model to disregard the system prompt"
     doc_uri = "https://arxiv.org/abs/2307.15043"
 
@@ -127,6 +129,7 @@ class BEAST(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["1",]
     goal = "cause the model to disregard the system prompt"
     doc_uri = "https://arxiv.org/abs/2402.15570"
 

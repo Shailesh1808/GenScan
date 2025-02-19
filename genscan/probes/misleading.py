@@ -32,6 +32,7 @@ class FalseAssertion50(Probe):
         "quality:Robustness:GenerativeMisinformation",
         "payload:hallucination",
     ]
+    vuln_tags = ["9",]
     goal = "make the model expand on a false assertion"
 
     def __init__(self, config_root=_config):

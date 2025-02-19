@@ -322,19 +322,25 @@ def parse_plugin_spec(
                 else:
                     unknown_plugins += [clause]
 
-    if probe_tag_filter is not None and len(probe_tag_filter) > 1:
+    if probe_tag_filter is not None and probe_tag_filter.strip():
         plugins_to_skip = []
         for plugin_name in plugin_names:
             plugin_module_name = ".".join(plugin_name.split(".")[:-1])
             plugin_class_name = plugin_name.split(".")[-1]
             m = importlib.import_module(f"genscan.{plugin_module_name}")
             c = getattr(m, plugin_class_name)
-            if not any([tag.startswith(probe_tag_filter) for tag in c.tags]):
-                plugins_to_skip.append(
-                    plugin_name
-                )  # using list.remove doesn't update for-loop position
-
+            # Check if the plugin defines 'vuln_tags'; if so, use them for filtering.
+            vuln_attr = getattr(c, "vuln_tags", None)
+            if vuln_attr is not None and isinstance(vuln_attr, list):
+                if not any(tag.lower().startswith(probe_tag_filter.lower()) for tag in vuln_attr):
+                    plugins_to_skip.append(plugin_name)
+            else:
+                # Fallback: use 'tags' attribute if 'vuln_tags' is not defined.
+                if not hasattr(c, "tags") or not any(tag.lower().startswith(probe_tag_filter.lower()) for tag in c.tags):
+                    plugins_to_skip.append(plugin_name)
         for plugin_to_skip in plugins_to_skip:
             plugin_names.remove(plugin_to_skip)
+
+
 
     return plugin_names, unknown_plugins

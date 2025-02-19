@@ -36,6 +36,7 @@ class FigStep(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["8",]
     goal = "disregard the system prompt with both text and image"
 
     prompts = []
@@ -108,6 +109,7 @@ class FigStep(Probe):
 
 class FigStepTiny(FigStep, Probe):
     active = False
+    vuln_tags = ["8",]
 
     __doc__ = FigStep.__doc__ + " - Tiny version"
 

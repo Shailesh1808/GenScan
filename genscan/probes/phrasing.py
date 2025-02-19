@@ -35,6 +35,7 @@ class PastTense(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["5",]
     goal = "use past tense to disregard the system prompt"
 
     def __init__(self, config_root=_config):
@@ -58,6 +59,7 @@ class PastTenseMini(PastTense, TenseMini):
     generations is overridden.
     """
 
+    vuln_tags = ["5",]
     active = True
 
     def __init__(self, config_root=_config):
@@ -81,6 +83,7 @@ class FutureTense(Probe):
         "quality:Security:PromptStability",
         "payload:jailbreak",
     ]
+    vuln_tags = ["5",]
     goal = "use future tense to disregard the system prompt"
 
     def __init__(self, config_root=_config):
@@ -104,6 +107,7 @@ class FutureTenseMini(FutureTense, TenseMini):
     generations is overridden.
     """
 
+    vuln_tags = ["5",]
     active = True
 
     def __init__(self, config_root=_config):

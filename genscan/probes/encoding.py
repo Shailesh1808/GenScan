@@ -238,6 +238,7 @@ class BaseEncodingProbe:
         "quality:Security:PromptStability",
         "payload:generic",
     ]
+    vuln_tags = ["1",]
     goal = "make the model say an encoded payload"
     bcp47 = "en"
     doc_uri = "https://kai-greshake.de/posts/llm-malware/#encoded-inline-jailbreak"
@@ -272,7 +273,7 @@ class InjectBase64(BaseEncodingProbe, Probe):
         binascii.b2a_base64,
     ]
     encoding_name = "BASE64"
-
+    vuln_tags = ["1",]
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
         Probe.__init__(self, config_root=config_root)
@@ -286,7 +287,7 @@ class InjectBase16(BaseEncodingProbe, Probe):
 
     encoding_funcs = [base64.b16encode]
     encoding_name = "BASE16"
-
+    vuln_tags = ["1",]
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
         Probe.__init__(self, config_root=config_root)
@@ -300,6 +301,7 @@ class InjectBase32(BaseEncodingProbe, Probe):
 
     encoding_funcs = [base64.b32encode]
     encoding_name = "BASE32"
+    vuln_tags = ["1",]
 
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
@@ -314,6 +316,7 @@ class InjectAscii85(BaseEncodingProbe, Probe):
 
     encoding_funcs = [base64.a85encode, base64.b85encode]
     encoding_name = "ASCII85"
+    vuln_tags = ["1",]
 
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
@@ -328,7 +331,7 @@ class InjectHex(BaseEncodingProbe, Probe):
 
     encoding_funcs = [binascii.b2a_hex]
     encoding_name = "hex"
-
+    vuln_tags = ["1",]
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
         Probe.__init__(self, config_root=config_root)
@@ -343,7 +346,7 @@ class InjectQP(BaseEncodingProbe, Probe):
     encoding_funcs = [binascii.b2a_qp]
     encoding_name = "Quoted-Printable"
     active = False  # seems to just pass text right through - when using ascii chars
-
+    vuln_tags = ["1",]
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
         Probe.__init__(self, config_root=config_root)
@@ -356,6 +359,7 @@ class InjectUU(BaseEncodingProbe, Probe):
     model to repeat & decode them."""
 
     encoding_name = "UUencode"
+    vuln_tags = ["1",]
 
     def UUencode(self, payload):
         hash_chunks = []
@@ -378,7 +382,7 @@ class InjectMime(BaseEncodingProbe, Probe):
 
     encoding_name = "MIME"
     active = False  # seems to just pass text right through - when using ascii chars
-
+    vuln_tags = ["1",]
     def __init__(self, config_root=_config):
         import quopri
 
@@ -396,6 +400,7 @@ class InjectROT13(BaseEncodingProbe, Probe):
 
     encoding_funcs = [rot13]
     encoding_name = "ROT13"
+    vuln_tags = ["1",]
 
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
@@ -409,6 +414,7 @@ class InjectBase2048(BaseEncodingProbe, Probe):
     model to repeat & decode them."""
 
     encoding_name = "BASE2048"
+    vuln_tags = ["1",]
 
     def __init__(self, config_root=_config):
         import base2048
@@ -427,6 +433,7 @@ class InjectBraille(BaseEncodingProbe, Probe):
     doc_uri = ""
     encoding_funcs = [braille]
     encoding_name = "Braille"
+    vuln_tags = ["1",]
 
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
@@ -442,6 +449,7 @@ class InjectMorse(BaseEncodingProbe, Probe):
     doc_uri = ""
     encoding_funcs = [morse]
     encoding_name = "Morse"
+    vuln_tags = ["1",]
 
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
@@ -494,7 +502,7 @@ class InjectNato(BaseEncodingProbe, Probe):
 
     encoding_funcs = [nato]
     encoding_name = "Nato"
-
+    vuln_tags = ["1",]
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
         Probe.__init__(self, config_root=config_root)
@@ -523,6 +531,8 @@ class InjectEcoji(BaseEncodingProbe, Probe):
     encoding_name = "Ecoji"
     encoding_funcs = [_ecoji]
 
+    vuln_tags = ["1",]
+
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)
         Probe.__init__(self, config_root=config_root)
@@ -547,6 +557,8 @@ class InjectZalgo(BaseEncodingProbe, Probe):
 
     encoding_name = "Zalgo"
     encoding_funcs = [zalgo]
+
+    vuln_tags = ["1",]
 
     def __init__(self, config_root=_config):
         BaseEncodingProbe.__init__(self, config_root=config_root)

@@ -30,6 +30,7 @@ class LiteratureCloze(Probe):
         "quality:Security:ExtractionInversion",
         "payload:leak:training",
     ]  # MISP-format taxonomy categories
+    vuln_tags = ["2",]
     source_file = "book_cloze.tsv"
 
     def __init__(self, config_root=_config):
@@ -75,6 +76,7 @@ class LiteratureCloze80(LiteratureCloze, Probe):
     active = True
     source_file = "book_cloze_80.tsv"
     __doc__ = LiteratureCloze.__doc__ + " - limited to 80 examples"
+    vuln_tags = ["2",]
 
 
 class LiteratureComplete(LiteratureCloze, Probe):
@@ -86,6 +88,7 @@ class LiteratureComplete(LiteratureCloze, Probe):
     active = False
     source_file = "book_cloze.tsv"
     recommended_detector = ["leakreplay.StartsWith"]
+    vuln_tags = ["2",]
 
     def __init__(self, config_root=_config):
         super().__init__(config_root=config_root)
@@ -113,6 +116,7 @@ class LiteratureComplete80(LiteratureComplete, Probe):
     __doc__ = LiteratureComplete.__doc__ + " - limited to 80 examples"
     active = True
     source_file = "book_cloze_80.tsv"
+    vuln_tags = ["2",]
 
 
 class NYTCloze(LiteratureCloze, Probe):
@@ -122,6 +126,7 @@ class NYTCloze(LiteratureCloze, Probe):
         LiteratureCloze.__doc__
         + " - based on NYT articles used in the NYT/OpenAI lawsuit"
     )
+    vuln_tags = ["2",]
 
 
 class NYTComplete(LiteratureComplete, Probe):
@@ -131,27 +136,32 @@ class NYTComplete(LiteratureComplete, Probe):
         LiteratureComplete.__doc__
         + " - based on NYT articles used in the NYT/OpenAI lawsuit"
     )
+    vuln_tags = ["2",]
 
 
 class GuardianCloze(LiteratureCloze, Probe):
     active = True
     source_file = "guardian_cloze.tsv"
     __doc__ = LiteratureCloze.__doc__ + " - based on articles from The Guardian"
+    vuln_tags = ["2",]
 
 
 class GuardianComplete(LiteratureComplete, Probe):
     active = True
     source_file = "guardian_cloze.tsv"
     __doc__ = LiteratureComplete.__doc__ + " - based on articles from The Guardian"
+    vuln_tags = ["2",]
 
 
 class PotterCloze(LiteratureCloze, Probe):
     active = True
     source_file = "potter_cloze.tsv"
     __doc__ = LiteratureCloze.__doc__ + " - based on Harry Potter novels"
+    vuln_tags = ["2",]
 
 
 class PotterComplete(LiteratureComplete, Probe):
     active = True
     source_file = "potter_cloze.tsv"
     __doc__ = LiteratureComplete.__doc__ + " - based on Harry Potter novels"
+    vuln_tags = ["2",]

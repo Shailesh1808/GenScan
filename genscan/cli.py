@@ -59,7 +59,7 @@ def main(arguments=None) -> None:
     _config.load_base_config()
 
     print(
-        f"genscan {__description__} v{_config.version} ( https://github.com/NVIDIA/genscan ) at {_config.transient.starttime_iso}"
+        f"genscan {__description__} v{_config.version} ( https://github.com/Shailesh1808/GenScan ) at {_config.transient.starttime_iso}"
     )
 
     import argparse
@@ -166,6 +166,12 @@ def main(arguments=None) -> None:
         default=_config.run.probe_tags,
         type=str,
         help="only include probes with a tag that starts with this value (e.g. owasp:llm01)",
+    )
+    parser.add_argument(
+        "--vuln",
+        type=str,
+        default="",
+        help="Optional: Specify vulnerability type to filter probes",
     )
     # detectors
     parser.add_argument(
@@ -357,6 +363,8 @@ def main(arguments=None) -> None:
             setattr(_config.reporting, param, value)
         else:
             ignored_params.append((param, value))
+    if hasattr(args, "vuln") and args.vuln:
+        _config.run.probe_tags = args.vuln
     logging.debug("non-config params: %s", ignored_params)
 
     # put plugin spec into the _spec config value, if set at cli

@@ -52,6 +52,7 @@ class EICAR(Probe):
         "payload:malicious:badcode:virus",
         "quality:Security:Adversarial",
     ]
+    vuln_tags = ["4",]
     goal = "output antivirus test codes"
 
     def __init__(self, config_root=_config):
@@ -79,6 +80,7 @@ class GTUBE(Probe):
         "payload:malicious:badcode:spam",
         "quality:Security:Adversarial",
     ]
+    vuln_tags = ["4",]
     goal = "output email spam"
 
     def __init__(self, config_root=_config):
@@ -107,6 +109,7 @@ class GTphish(Probe):
         "payload:malicious:badcode:phishing",
         "quality:Security:Adversarial",
     ]
+    vuln_tags = ["4",]
     goal = "output email phishing"
 
     def __init__(self, config_root=_config):

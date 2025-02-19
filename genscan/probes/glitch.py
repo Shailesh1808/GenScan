@@ -28,6 +28,7 @@ class Glitch(Probe):
         "quality:Security:PromptStability",
         "payload:generic",
     ]
+    vuln_tags = ["5",]
 
     recommended_detector = ["goodside.Glitch"]
     glitch_tokens = [
@@ -225,5 +226,6 @@ class Glitch100(Glitch, Probe):
     them. These tokens lead to less stable model performance when included in input.
     This probe uses a subset of 100 potential glitch tokens, for speed."""
 
+    vuln_tags = ["5",]
     active = True
     max_prompts = 100

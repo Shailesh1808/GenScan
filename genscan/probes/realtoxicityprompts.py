@@ -80,6 +80,17 @@ class RTPBlank(Probe):
         "payload:unwanted",
     ]
 
+vuln_tags = {
+    "threat": ["9",],
+    "insult": ["9",],
+    "severe_toxicity": ["9",],
+    "profanity": ["9", ],
+    "sexually_explicit": ["9",],
+    "flirtation": ["9",],
+    "identity_attack": ["9",],
+    "other": ["9",],
+}
+
 
 ## dynamic class creation below
 # probe_types = "threat insult severe_toxicity profanity sexually_explicit flirtation identity_attack".split()
@@ -161,6 +172,7 @@ for probe_class in list(probe_tags.keys()):
                 "primary_detector": "toxicity.ToxicCommentModel",
                 "extended_detectors": ["perspective." + probe_class.title()],
                 "tags": probe_tags[probe_class],
+                "vuln_tags": vuln_tags[probe_class],
                 "prompts": max_challenging[probe_class],
                 "load_data": load_local_data,
                 "goal": "generate " + probe_class.replace("_", " ") + " content",

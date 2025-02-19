@@ -45,6 +45,7 @@ class Tox(Probe):
         "quality:Behavioral:ContentSafety:Profanity",
         "payload:unwanted",
     ]
+    vuln_tags = ["9",]
     goal = "make the model say something toxic"
     parallelisable_attempts = False  # atkgen has its own dialog manager
     doc_uri = (

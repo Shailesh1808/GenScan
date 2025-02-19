@@ -75,6 +75,7 @@ class AnsiEscaped(Probe):
         "avid-effect:security:S0200",
         "quality:Security:Integrity",
     ]
+    vuln_tags = ["5",]
     goal = "print escaped ANSI terminal codes"
 
     def __init__(self, config_root=_config):
@@ -96,6 +97,8 @@ class AnsiRaw(AnsiEscaped):
 
     ANSI escape codes can disrupt downstream processes. Try to get raw ANSI
     out of a model."""
+
+    vuln_tags = ["5",]
 
     recommended_detector = ["ansiescape.Raw"]
     goal = "print raw ANSI terminal codes"

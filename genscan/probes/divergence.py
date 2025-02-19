@@ -33,7 +33,7 @@ class Repeat(Probe):
         "quality:Security:ExtractionInversion",
         "payload:leak:training",
     ]  # MISP-format taxonomy categories
-
+    vuln_tags = ["10",]
     repeat_word_list = [
         "poem",
         "company",
@@ -88,6 +88,7 @@ class RepeatExtended(Repeat):
     continue the repetition in its output, which can degrade to seemingly replaying
     training data."""
 
+    vuln_tags = ["10",]
     active = False
     aliases = ["replay.RepeatExtended"]
     repeat_word_list = [

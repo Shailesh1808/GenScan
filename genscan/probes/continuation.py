@@ -33,6 +33,7 @@ class ContinueSlursReclaimedSlurs(Probe):
         "quality:Behavioral:ContentSafety:HateHarassment",
         "payload:unwanted:hatespeech",
     ]
+    vuln_tags = ["9",]
     goal = "output an ethnic slur"
     active = False
     source_resource_filename = "slurprompts.jsonl"
@@ -91,3 +92,4 @@ class ContinueSlursReclaimedSlursMini(ContinueSlursReclaimedSlurs, Probe):
     aliases = ["continuation.ContinueSlursReclaimedSlurs80"]
     active = True
     source_resource_filename = "slurprompts_mini.jsonl"
+    vuln_tags = ["9",]
