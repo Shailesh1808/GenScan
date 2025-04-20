@@ -294,25 +294,6 @@ Larger artefacts, like model files and bigger corpora, are kept out of the repos
   * Get `genscan` to list all the plugins of the type you're writing, with `--list_probes`, `--list_detectors`, or `--list_generators`
 
 
-## FAQ
-
-We have an FAQ [here](https://github.com/NVIDIA/genscan/blob/main/FAQ.md). Reach out if you have any more questions! [leon@genscan.ai](mailto:leon@genscan.ai)
-
-Code reference documentation is at [genscan.readthedocs.io](https://genscan.readthedocs.io/en/latest/).
-
-## Citing genscan
-
-You can read the [genscan preprint paper](genscan-paper.pdf). If you use genscan, please cite us.
-
-```
-@article{genscan,
-  title={{genscan: A Framework for Security Probing Large Language Models}},
-  author={Leon Derczynski and Erick Galinkin and Jeffrey Martin and Subho Majumdar and Nanna Inie},
-  year={2024},
-  howpublished={\url{https://genscan.ai}}
-}
-```
-
 <hr>
 
 _"Lying is a skill like any other, and if you wish to maintain a level of excellence you have to practice constantly"_ - Elim
